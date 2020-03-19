@@ -18,14 +18,14 @@ const profileSchema = new Schema({
   },
   //These are additional fields
   phonenumber: {
-    type: String,
+    type: Number,
     required: false
   },
   email: {
     type: String,
     required: false
   },
- 
+
   gender: {
     type: String,
     required: false
