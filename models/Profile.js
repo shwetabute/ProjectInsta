@@ -10,23 +10,27 @@ const profileSchema = new Schema({
   handle: {
     type: String
   },
+  
   website: {
     type: String,
     required: false
   },
+  
   bio: {
     type: String
   },
+  
   //These are additional fields
   phonenumber: {
     type: Number,
     required: false
   },
+  
   email: {
     type: String,
     required: false
   },
- 
+                                 
   gender: {
     type: String,
     required: false
