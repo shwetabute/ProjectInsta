@@ -15,6 +15,9 @@ mongoose
 //Let's write our first route
 app.get('/', (req,res) => res.send('Hello World!'));
 
+app.use('/api/users', users);
+
+
 const port = 8060;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
