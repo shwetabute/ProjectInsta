@@ -39,6 +39,9 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
+  if (!isEmpty(data.gender)) {
+      errors.gender = 'Gender is required';
+  }
 
   return {
     errors,
