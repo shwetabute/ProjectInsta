@@ -1,4 +1,5 @@
 module.exports = {
   mongoURI:
-  "mongodb+srv://NPSadmin:Password111@projectinsta-olpn1.mongodb.net/socialdb?retryWrites=true&w=majority"
+    "mongodb+srv://NPSadmin:Password111@projectinsta-olpn1.mongodb.net/socialdb?retryWrites=true&w=majority",
+  SecretOrKey:"SecretOrKey"
 };
