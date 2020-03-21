@@ -8,7 +8,8 @@ const profileSchema = new Schema({
   },
 
   handle: {
-    type: String
+    type: String,
+    required:true
   },
   
   website: {
