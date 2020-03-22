@@ -16,11 +16,11 @@ module.exports = function validateProfileInput(data) {
 
 
   if (!isEmpty(data.phonenumber)) {
-    if (!Validator.isLength(data.phonenumber, { is: 10})){
+    if (data.phonenumber.length != 10){
       errors.phonenumber = 'Phone Number needs to be of 10 digits';
     }
 
-    if (!Validator.isInteger(data.phonenumber)) {
+    if (!Validator.isInt(data.phonenumber)) {
       errors.phonenumber = 'Phone Number is invalid';
     }
   }
@@ -39,7 +39,7 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-  if (!isEmpty(data.gender)) {
+  if (isEmpty(data.gender)) {
       errors.gender = 'Gender is required';
   }
 
