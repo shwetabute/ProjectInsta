@@ -54,7 +54,7 @@ router.post(
             return res.status(400).json(errors);
           }
           //Save profile
-          new Profile(profileFields).save().then(profiel => res.json(profile));
+          new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
     });
