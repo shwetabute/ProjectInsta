@@ -54,7 +54,8 @@ router.post(
             return res.status(400).json(errors);
           }
           //Save profile
-          new Profile(profileFields).save().then(profiel => res.json(profile));
+          new Profile(profileFields).save()
+          .then(profiel => res.json(profile));
         });
       }
     });
@@ -82,6 +83,8 @@ router.get(
       .catch(err => res.status(404).json(err));
   }
 );
+
+
 // @route   GET api/profile/all
 // @desc    Get all profiles
 // @access  Public
@@ -100,6 +103,8 @@ router.get("/all", (req, res) => {
     })
     .catch(err => res.status(404).json({ profile: "There are no profiles" }));
 });
+
+
 // @route   GET api/profile/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
@@ -119,6 +124,8 @@ router.get("/handle/:handle", (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
+
+
 // @route   GET api/profile/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
@@ -140,6 +147,8 @@ router.get("/user/:user_id", (req, res) => {
       res.status(404).json({ profile: "There is no profile for this user" })
     );
 });
+
+
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
