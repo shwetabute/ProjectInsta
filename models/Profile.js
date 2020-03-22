@@ -28,10 +28,7 @@ const profileSchema = new Schema({
     required: false
   },
 
-  email: {
-    type: String,
-    required: false
-  },
+ 
 
   gender: {
     type: String,
