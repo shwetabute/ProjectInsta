@@ -23,12 +23,14 @@ const profileSchema = new Schema({
   },
 
   //These are additional fields
+  location: {
+    type: String,
+    required:false
+  },
   phonenumber: {
     type: Number,
     required: false
   },
-
- 
 
   gender: {
     type: String,
