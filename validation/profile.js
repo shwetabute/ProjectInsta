@@ -23,6 +23,16 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
+  if (!isEmpty(data.location)) {
+    // if (!isNaN(data.location)){
+    //   errors.location = "Enter valid Location";
+    // }
+    const filteredLocation = data.location.replace(/[^a-zA-Z .,]/g, "");
+    if (filteredLocation !== data.location) {
+      errors.location = "Enter valid location";
+    }
+  }
+
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
       errors.website = "Not a valid URL";

@@ -25,7 +25,7 @@ const profileSchema = new Schema({
   //These are additional fields
   location: {
     type: String,
-    required:false
+    required: false
   },
   phonenumber: {
     type: Number,

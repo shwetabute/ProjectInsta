@@ -33,6 +33,7 @@ router.post(
     if (req.body.bio) profileFields.bio = req.body.bio;
     //For insta additional fields
     if (req.body.phonenumber) profileFields.phonenumber = req.body.phonenumber;
+    if (req.body.location) profileFields.location = req.body.location;
 
     if (req.body.gender) profileFields.gender = req.body.gender;
 
