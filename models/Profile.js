@@ -31,10 +31,15 @@ const profileSchema = new Schema({
     type: String,
     required: false
   },
-                                 
+
   gender: {
     type: String,
     required: false
-  }
+  },
+
+  profilePic: {
+    type: String,
+    required: false
+  },
 });
 module.exports = Profile = mongoose.model("profile", profileSchema);
