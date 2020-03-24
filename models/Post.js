@@ -50,7 +50,17 @@ const PostSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  savepost: [
+    {
+      image: {
+        type: String
+      },
+      text: {
+        type: String
+      }
+    }
+  ]
 });
 
 module.exports = Post = mongoose.model("post", PostSchema);
