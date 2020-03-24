@@ -35,6 +35,7 @@ const profileSchema = new Schema({
   gender: {
     type: String,
     required: false
-  }
+  },
+  
 });
 module.exports = Profile = mongoose.model("profile", profileSchema);

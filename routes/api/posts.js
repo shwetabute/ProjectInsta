@@ -218,7 +218,7 @@ router.delete(
 //@route   POST api/posts/save:id
 // @desc    save post
 // @access  private
-router.post(
+router.post( 
   "/save/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
