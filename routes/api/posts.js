@@ -28,6 +28,7 @@ router.post(
     }
 
     const newPost = new Post({
+      postimage:req.body.postimage,
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
