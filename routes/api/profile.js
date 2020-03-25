@@ -58,7 +58,7 @@ router.post(
           //Save profile
           new Profile(profileFields).save().then(profile => res.json(profile));
           new Profile(profileFields).save()
-          .then(profiel => res.json(profile));
+          .then(profile => res.json(profile));
         });
       }
     });
@@ -167,6 +167,91 @@ router.delete(
   }
 );
 
+// @route   Profile api/profile/follow/:id
+// @desc    follow user
+// @access  Private
+router.post(
+  '/follow/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Profile.findOne({user: req.params.id}).then(profile => {
+        if (
+          profile.followers.filter(follower => follower.user.toString() === req.user.id)
+            .length > 0
+        ) {
+          return res
+            .status(400)
+            .json({ alreadyfollowed: 'You are already following this person' });
+          }
+
+        // Add user id to followers array of other user profile
+        profile.followers.unshift({ user: req.user.id });
+
+        // Add user id in following array of own profile
+        Profile.findOne({user: req.user.id}).then(profile => {
+          profile.following.unshift({ user: req.params.id })
+          profile.save({"_id" : profile.id})
+        });
+
+        profile.save({"_id" : profile.id}).then(profile => res.json(profile));
+
+      })
+      
+      .catch(err => res.status(404).json({ profilenotfound: 'No profile found' }));
+    });
+  }
+);
+
+
+// @route   Profile api/profile/unfollow/:id
+// @desc    unfollow user
+// @access  Private
+router.post(
+  '/unfollow/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Profile.findOne({user: req.params.id})
+        .then(profile => {
+          if (
+            profile.followers.filter(follower => follower.user.toString() === req.user.id)
+              .length === 0
+          ) {
+            return res
+              .status(400)
+              .json({ notfollowed: 'You have not yet followed this person' });
+          }
+
+          // Get remove index
+          const removeIndex = profile.followers
+            .map(item => item.user.toString())
+            .indexOf(req.user.id);
+          // Splice out of array
+          profile.followers.splice(removeIndex, 1);
+
+
+          // Remove other person user_id in following array of own profile
+          Profile.findOne({user: req.user.id}).then(profile => {
+            const removeIndex = profile.following
+            .map(item => item.user.toString())
+            .indexOf(req.params.id);
+
+            // Remove other user id from own following array
+            profile.following.splice(removeIndex, 1);
+            
+            // Save
+            profile.save({"_id" : profile.id})
+          });
+
+
+          // Save
+          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
+        })
+        .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+    });
+  }
+);
 
 
 module.exports = router;

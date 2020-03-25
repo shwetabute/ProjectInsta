@@ -42,5 +42,23 @@ const profileSchema = new Schema({
     type: String,
     required: false
   },
+
+  followers:[
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
+
+  following:[
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
 });
 module.exports = Profile = mongoose.model("profile", profileSchema);
