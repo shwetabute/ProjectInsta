@@ -58,7 +58,7 @@ router.post(
           //Save profile
           new Profile(profileFields).save().then(profile => res.json(profile));
           new Profile(profileFields).save()
-          .then(profiel => res.json(profile));
+          .then(profile => res.json(profile));
         });
       }
     });
@@ -191,10 +191,10 @@ router.post(
         // Add user id in following array of own profile
         Profile.findOne({user: req.user.id}).then(profile => {
           profile.following.unshift({ user: req.params.id })
-          profile.save()
+          profile.save({"_id" : profile.id})
         });
 
-        profile.save().then(profile => res.json(profile));
+        profile.save({"_id" : profile.id}).then(profile => res.json(profile));
 
       })
       
@@ -241,12 +241,12 @@ router.post(
             profile.following.splice(removeIndex, 1);
             
             // Save
-            profile.save()
+            profile.save({"_id" : profile.id})
           });
 
 
           // Save
-          profile.save().then(profile => res.json(profile));
+          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
         })
         .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
     });
