@@ -227,7 +227,7 @@ router.post(
         .then(post => {
           savePostFields = {};
           if (req.body.image) savePostFields.image = req.body.image;
-          if (req.body.text) savePostFields.post = req.body.post;
+          if (req.body.text) savePostFields.text = req.body.text;
 
           const savePost = {
             savePostFields
