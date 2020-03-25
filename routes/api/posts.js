@@ -28,7 +28,7 @@ router.post(
     }
 
     const newPost = new Post({
-      postimage:req.body.postimage,
+      postimage: req.body.postimage,
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
@@ -218,7 +218,7 @@ router.delete(
 //@route   POST api/posts/save:id
 // @desc    save post
 // @access  private
-router.post( 
+router.post(
   "/save/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -227,7 +227,7 @@ router.post(
         .then(post => {
           savePostFields = {};
           if (req.body.image) savePostFields.image = req.body.image;
-          if (req.body.text) savePostFields.post = req.body.post;
+          if (req.body.text) savePostFields.post = req.body.text;
 
           const savePost = {
             savePostFields
