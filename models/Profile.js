@@ -37,5 +37,10 @@ const profileSchema = new Schema({
     required: false
   },
   
+
+  profilePic: {
+    type: String,
+    required: false
+  },
 });
 module.exports = Profile = mongoose.model("profile", profileSchema);

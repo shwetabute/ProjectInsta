@@ -4,8 +4,9 @@ const isEmpty = require("./is-empty");
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
-  data.handle = !isEmpty(data.handle) ? data.handle : "";
-
+  data.handle = !isEmpty(data.handle) ? data.handle : '';
+  // data.profilepic = !isEmpty(data.profilepic) ? data.profilepic : '';
+  
   if (!Validator.isLength(data.handle, { min: 2, max: 20 })) {
     errors.handle = "Handle needs to between 2 and 20 characters";
   }
@@ -15,11 +16,12 @@ module.exports = function validateProfileInput(data) {
   }
 
   if (!isEmpty(data.phonenumber)) {
-    if (data.phonenumber.length != 10) {
-      errors.phonenumber = "Phone Number needs to be of 10 digits";
+    if (data.phonenumber.length != 10){
+      errors.phonenumber = 'Phone Number needs to be of 10 digits';
     }
+
     if (!Validator.isInt(data.phonenumber)) {
-      errors.phonenumber = "Phone Number is invalid";
+      errors.phonenumber = 'Phone Number is invalid';
     }
   }
 
@@ -39,8 +41,15 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
+  if (!isEmpty(data.profilePic)) {
+    if (!Validator.isURL(data.profilePic)) {
+      errors.profilePic = 'Not a valid URL'; 
+    }
+  }
+  
   return {
     errors,
     isValid: isEmpty(errors)
   };
 };
+
