@@ -1,5 +1,5 @@
-const Validator = require('validator');
-const isEmpty = require('./is-empty');
+const Validator = require("validator");
+const isEmpty = require("./is-empty");
 
 module.exports = function validateProfileInput(data) {
   let errors = {};
@@ -8,13 +8,12 @@ module.exports = function validateProfileInput(data) {
   // data.profilepic = !isEmpty(data.profilepic) ? data.profilepic : '';
   
   if (!Validator.isLength(data.handle, { min: 2, max: 20 })) {
-    errors.handle = 'Handle needs to between 2 and 20 characters';
+    errors.handle = "Handle needs to between 2 and 20 characters";
   }
 
   if (Validator.isEmpty(data.handle)) {
-    errors.handle = 'Profile handle is required';
-  }  
-
+    errors.handle = "Profile handle is required";
+  }
 
   if (!isEmpty(data.phonenumber)) {
     if (data.phonenumber.length != 10){
@@ -26,17 +25,19 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-
-  if (!isEmpty(data.email)) {
-    if(!Validator.isEmail(data.email))
-    {
-      errors.email = 'Email is invalid';
+  if (!isEmpty(data.location)) {
+    // if (!isNaN(data.location)){
+    //   errors.location = "Enter valid Location";
+    // }
+    const filteredLocation = data.location.replace(/[^a-zA-Z .,]/g, "");
+    if (filteredLocation !== data.location) {
+      errors.location = "Enter valid location";
     }
   }
 
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
-      errors.website = 'Not a valid URL';
+      errors.website = "Not a valid URL";
     }
   }
 

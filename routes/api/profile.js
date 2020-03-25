@@ -33,7 +33,8 @@ router.post(
     if (req.body.bio) profileFields.bio = req.body.bio;
     //For insta additional fields
     if (req.body.phonenumber) profileFields.phonenumber = req.body.phonenumber;
-    if (req.body.email) profileFields.email = req.body.email;
+    if (req.body.location) profileFields.location = req.body.location;
+
     if (req.body.gender) profileFields.gender = req.body.gender;
     if (req.body.profilePic) profileFields.profilePic = req.body.profilePic;
 
@@ -55,6 +56,7 @@ router.post(
             return res.status(400).json(errors);
           }
           //Save profile
+          new Profile(profileFields).save().then(profile => res.json(profile));
           new Profile(profileFields).save()
           .then(profiel => res.json(profile));
         });

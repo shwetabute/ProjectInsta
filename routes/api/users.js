@@ -1,11 +1,11 @@
 const express = require('express');
-const User = require('../../models/User');
+const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
-const router = express.Router();
+const User = require("../../models/User");
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -76,6 +76,18 @@ router.post('/login', (req,res)=> {
                 avatar: user.avatar};
               
                 //sign token
+<<<<<<< HEAD
+              jwt.sign(
+                payload,
+                keys.secretOrKey,
+                { expiresIn: 3600 },
+                (err, token) => {
+                  res.json({
+                    success: true,
+                    token: 'Bearer ' + token
+                  });
+                });
+=======
                 jwt.sign(
                   payload, 
                   keys.SecretOrKey, 
@@ -86,6 +98,7 @@ router.post('/login', (req,res)=> {
                       token: 'Bearer ' + token
                     })
                   } )
+>>>>>>> master
             } else {
               return res.status(400).json({password: 'Password incorrect!'});
             }
