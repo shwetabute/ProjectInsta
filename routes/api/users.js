@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 const User = require("../../models/User");
+// Post model
+const Post = require("../../models/Post");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
@@ -111,5 +113,39 @@ router.get(
     });
   }
 );
+//@route   POST api/posts/save:id
+// @desc    save post
+// @access  private
+router.post(
+  "/save/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ user: req.user.id }).then(user => {
+      Post.findById(req.params.id)
+        .then(post => {
+          savePostFields = {};
+          console.log(JSON.stringify(post));
+          if (post.postimage) savePostFields.image = post.postimage;
+          if (post.text) savePostFields.text = post.text;
 
+          // if (req.body.image) savePostFields.image = req.body.image;
+          // if (req.body.text) savePostFields.text = req.body.text;
+
+          // const savePost = {
+          //   savePostFields
+          // };
+
+          // save post to savepost object
+          if (!post.savepost) {
+            post.savepost = [];
+          }
+          a.user.savepost.unshift(savePostFields);
+          // post.save({ _id: post.id });
+          user.savepost.save({ _id: post.id }).then(post => res.json(post));
+        })
+        .catch(err => console.log(err));
+      // .catch(err => res.status(404).json({ postnotfound: "No post found" }));
+    });
+  }
+);
 module.exports = router;
