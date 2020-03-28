@@ -235,7 +235,8 @@ router.post(
 
           // save post to savepost object
           post.savepost.unshift(savePost);
-          post.save().then(post => res.json(post));
+
+          post.save({ _id: post.id }).then(post => res.json(post));
         })
         .catch(err => res.status(404).json({ postnotfound: "No post found" }));
     });
