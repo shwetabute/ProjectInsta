@@ -215,31 +215,5 @@ router.delete(
   }
 );
 
-//@route   POST api/posts/save:id
-// @desc    save post
-// @access  private
-router.post(
-  "/save/:id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
-          savePostFields = {};
-          if (req.body.image) savePostFields.image = req.body.image;
-          if (req.body.text) savePostFields.text = req.body.text;
 
-          const savePost = {
-            savePostFields
-          };
-
-          // save post to savepost object
-          post.savepost.unshift(savePost);
-          // post.save({ _id: post.id });
-          post.save().then(post => res.json(post));
-        })
-        .catch(err => res.status(404).json({ postnotfound: "No post found" }));
-    });
-  }
-);
 module.exports = router;
