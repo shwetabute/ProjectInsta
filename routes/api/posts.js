@@ -28,7 +28,7 @@ router.post(
     }
 
     const newPost = new Post({
-      postimage:req.body.postimage,
+      postimage: req.body.postimage,
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
@@ -218,7 +218,7 @@ router.delete(
 //@route   POST api/posts/save:id
 // @desc    save post
 // @access  private
-router.post( 
+router.post(
   "/save/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -235,6 +235,7 @@ router.post(
 
           // save post to savepost object
           post.savepost.unshift(savePost);
+          // post.save({ _id: post.id });
           post.save().then(post => res.json(post));
         })
         .catch(err => res.status(404).json({ postnotfound: "No post found" }));
