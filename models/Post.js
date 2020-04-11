@@ -13,7 +13,7 @@ const PostSchema = new Schema({
   },
   postimage: {
     type: String,
-    required:true
+    required: true
   },
   name: {
     type: String
@@ -55,16 +55,6 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now
   }
-  // savepost: [
-  //   {
-  //     image: {
-  //       type: String
-  //     },
-  //     text: {
-  //       type: String
-  //     }
-  //   }
-  // ]
 });
 
 module.exports = Post = mongoose.model("post", PostSchema);

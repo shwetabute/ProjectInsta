@@ -14,12 +14,12 @@ module.exports = function validatePostInput(data) {
   // if (Validator.isEmpty(data.text)) {
   //   errors.text = "Text field is required";
   // }
-  if (Validator.isEmpty(data.postimage)) {
-    errors.postimage = "Please provide a image for the post ";
-  }
-  
+
   if (!Validator.isURL(data.postimage)) {
     errors.postimage = "Not a valid URL";
+  }
+  if (Validator.isEmpty(data.postimage)) {
+    errors.postimage = "Please provide a image for the post ";
   }
 
   return {
