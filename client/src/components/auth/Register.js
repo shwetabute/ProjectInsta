@@ -109,7 +109,7 @@ class Register extends Component {
                       <div className="invalid-feedback">{errors.password2}</div>
                     )}
 
-                    <input type="submit" className="btn_submit" />
+                    <input type="submit" className="btn_submit" value="Sign Up"/>
                   </div>
                 </form>
               </div>
