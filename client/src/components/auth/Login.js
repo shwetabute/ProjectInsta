@@ -1,75 +1,88 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import axios from "axios";
+import classnames from "classnames";
 
 class Login extends Component {
-  componentDidMount() {
-    const signUpButton = document.getElementById("signUp");
-    const signInButton = document.getElementById("signIn");
-    const container = document.getElementById("container");
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
 
-    signUpButton.addEventListener("click", () => {
-      container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener("click", () => {
-      container.classList.remove("right-panel-active");
-    });
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    axios
+      .post("/api/users/login", user)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }));
+  }
+
   render() {
+    const { errors } = this.state;
     return (
-      <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="#">
-          <h1>Create Account</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"
-              ><i class="fab fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="password" placeholder=" Confirm Password" />
-          <button>Sign Up</button>
-        </form>
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="#">
-          <h1>Sign in</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"
-              ><i class="fab fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your account</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
-        </form>
-      </div>
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us please login with your personal info
-            </p>
-            <button class="ghost" id="signIn">Sign In</button>
-          </div>
-          <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
+      <div className="login">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 m-auto">
+              <h1 className="display-4 text-center">Log In</h1>
+              <p className="lead text-center">
+                Sign in to your DevConnector account
+              </p>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.email
+                    })}
+                    placeholder="Email Address"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                  />
+                  {errors.email && (
+                    <div className="invalid-feedback">{errors.email}</div>
+                  )}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.password
+                    })}
+                    placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                  />
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
+                </div>
+                <input type="submit" className="btn btn-info btn-block mt-4" />
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }
+
 export default Login;
+
