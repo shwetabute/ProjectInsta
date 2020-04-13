@@ -40,13 +40,9 @@ class Login extends Component {
       <div className="style_login">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></link>  
         <div className="row no-gutters">
-        <div className="col">
-        <div className="leftside">
-          <div className="body"></div>
-		      {/* <div className="grad"></div> */}
-		      {/* <div className="header">
-			      <div>Project<span>Insta</span></div>
-		      </div> */}
+         <div className="col">
+          <div className="leftside">
+            <div className="body"></div>
           </div>
         </div>
         <div className="col">
@@ -68,7 +64,7 @@ class Login extends Component {
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
-                </div><br/>
+                </div>
                 <div>
                 <input
                   type="password"
@@ -83,15 +79,16 @@ class Login extends Component {
                   {errors.password && (
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
-                </div><br/>
+                </div>
                 <div>
-                  <input type="submit" className="login_submit" value="Login"/>
-                </div><br/><br/><br/>
+                  <input type="submit" className="btn_submit" value="Login"/>
+                </div><br/><br/><br/><br/>
                 <div className="noaccount_text">Don't have an account?</div>
-                <div>
-                  <input type="submit" className="login_submit" value="Sign Up"/>
-                  {/* <Link to="/register" className="sign_up">Sign Up</Link> */}
-                </div><br/>
+                <Link className="nav-link" to="/register">
+                  <div className="btn_submit sign_up_link">
+                    Sign Up
+                  </div>
+                </Link><br/>
               </div>
             </form>
           </div>
