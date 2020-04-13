@@ -37,20 +37,19 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="style_login">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></link>  
-        <div className="row no-gutters">
-         <div className="col">
-          <div className="leftside">
-            <div className="body"></div>
-          </div>
-        </div>
-        <div className="col">
-          <div className="rightside">
+      // <div className="style_login">
+      //   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></link>  
+      //   <div className="row no-gutters">
+      //    <div className="col">
+      //     <div className="leftside">
+      //       <div className="body"></div>
+      //     </div>
+      //   </div>
+        <div id="box">
+            <div id="main"></div>
             <form onSubmit={this.onSubmit}>
-              <div className="login">
-                <div>
-                <div className="wc_text">Login to ProjectInsta</div><br/>
+            <div id="loginform">
+                <h1>LOGIN</h1>
                 <input
                   type="email"
                   className={classnames("login_email", {
@@ -64,8 +63,6 @@ class Login extends Component {
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
-                </div>
-                <div>
                 <input
                   type="password"
                   className={classnames("login_password", {
@@ -79,22 +76,24 @@ class Login extends Component {
                   {errors.password && (
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
-                </div>
-                <div>
-                  <input type="submit" className="btn_submit" value="Login"/>
-                </div><br/><br/><br/><br/>
-                <div className="noaccount_text">Don't have an account?</div>
+                             
+                             <button>LOGIN</button>
+                             </div>
+                <div id="login_msg">Have an account?</div>
+                <button id="login_btn">LOGIN</button>
+               
+                <div id="signup_msg">Don't have an account?</div>
                 <Link className="nav-link" to="/register">
-                  <div className="btn_submit sign_up_link">
-                    Sign Up
-                  </div>
+                <button id="signup_btn">SIGN UP</button>
+
                 </Link><br/>
+              </form>
               </div>
-            </form>
-          </div>
-        </div> 
-        </div>     
-      </div>  
+            
+      //     </div>
+      //   </div> 
+      //   </div>     
+      // </div>  
     );
   }
 }

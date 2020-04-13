@@ -1,227 +1,99 @@
-@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
-
 body{
-	margin: 0;
-	padding: 0;
-	background: #fff;
-
-	color: #fff;
-	font-family: Arial;
-	font-size: 12px;
+margin: 0px;
+padding: 0px;
+background-color: lightgray;
 }
-
-.body{
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	/* background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg); */
-	/* background-size: cover; */
-	/* -webkit-filter: blur(5px); */
-	z-index: 0;
+#box{
+height: 200px;
+width: 1000px;
+background-color:#2D2D2D;
+border-radius: 5px;
+position: absolute;
+top:50%;
+left: 50%;
+transform: translate(-50%,-50%);
 }
-
-.grad{
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-	z-index: 1;
-	opacity: 0.7;
+#main{
+height: 400px;
+width: 450px;
+background-color:white;
+border-radius: 5px;
+position: absolute;
+top:50%;
+left: 70%;
+transform: translate(-50%,-50%);
+z-index: 99;
 }
-
-.header{
-	position: absolute;
-	top: calc(50% - 35px);
-	left: calc(50% - 255px);
-	z-index: 2;
+#loginform,#signupform{
+position: absolute;
+top:50%;
+left: 70%;
+transform: translate(-50%,-50%);
+z-index: 999;
 }
-
-.header div{
-	float: left;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 35px;
-	font-weight: 200;
+#signupform{
+top:45%;
+left: 75%;
+visibility: hidden;
 }
-
-.header div span{
-	color: #5379fa !important;
+#loginform h1,#signupform h1{
+font-family: arial;
+font-size: 25px;
+color:turquoise;
 }
-
-.login{
-	position: absolute;
-	top: calc(10%);
-  /* left: calc(50% - 50px); */
-  left: 25%;
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
+#loginform input,#signupform input{
+height: 40px;
+width: 300px;
+border: 0px;
+outline: none;
+border-bottom: 1px solid black;
+margin: 5px;
 }
-
-.login_email{
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
+#loginform button,#signupform button{
+height: 35px;
+width: 130px;
+background-color:turquoise;
+font-family: monospace;
+font-size: 16px;
+color:white;
+border: none;
+outline: none;
+border-radius: 5px;
+margin-top: 30px;
+margin-left: 175px;
 }
-
-.login_password{
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-	margin-top: 10px;
+#login_btn,#signup_btn{
+height: 35px;
+width: 120px;
+background-color:transparent;
+color:white;
+border:1px solid white;
+border-radius: 5px;
+outline: none;
+position: absolute;
+left: 75%;
+top:65%;
+transform: translate(-50%,-50%);
+transition: all .5s;
 }
-
-.btn_submit{
-	width: 260px;
-	height: 35px;
-	background: #fff;
-	/* border: 1px solid #fff; */
-	cursor: pointer;
-	border-radius: 2px;
-	color: #b47c22;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-  font-weight: bold;
-	padding: 6px;
-	margin-top: 10px;
-	text-align: center;
-	text-decoration: none;
+#signup_btn{
+left: 25%;
 }
-
-.login input[type=button]:hover{
-	opacity: 0.8;
+#login_btn:hover,#signup_btn:hover{
+background-color:white;
+color:#2d2d2d;
+cursor: pointer;
 }
-
-.login input[type=button]:active{
-	opacity: 0.6;
+#login_msg,#signup_msg{
+font-family: arial;
+font-size: 25px;
+color:white;
+position: absolute;
+top:35%;
+left: 75%;
+transform: translate(-50%,-50%);
+z-index: 1;
 }
-
-.login input[type=text]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+#signup_msg{
+left: 25%;
 }
-
-.login input[type=password]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
-}
-
-.login input[type=button]:focus{
-	outline: none;
-}
-
-::-webkit-input-placeholder{
-   color: rgba(255,255,255,0.6);
-}
-
-::-moz-input-placeholder{
-   color: rgba(255,255,255,0.6);
-}
-
-.leftside, .rightside{
-  height: 100vh;
-  width: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.leftside{
-  /* background:lightseagreen; */
-  background-image: url(./img/img2.jpg);
-  -webkit-filter: blur(1px);
-  background-size: cover;
-}
-
-.rightside{
-  background: gray;
-}
-
-.wc_text{
-  color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 30px;
-  font-weight: 200;
-}
-
-.noaccount_text{
-  color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 20px;
-  font-weight: 200;
-}
-
-.sign_up {
-	width: 260px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #b47c22;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-  font-weight: bold;
-	padding: 6px;
-	margin-top: 10px;
-}
-
-.sign_up_text {
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-
-}
-
-.sign_up_email {
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-	margin-top: 10px;
-
-}
-
-.sign_up_link {
-	text-decoration: none;
-	margin-top: -8px;
-	margin-left: -16px;
-}
-
-
