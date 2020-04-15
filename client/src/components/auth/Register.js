@@ -4,6 +4,7 @@ import classnames from "classnames";
 import "../layout/style_login.css";
 import { registerUser } from "../../action/authActions";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Register extends Component {
   constructor() {
@@ -33,13 +34,13 @@ class Register extends Component {
       password2: this.state.password2,
     };
 
-    // axios
-    //   .post("/api/users/register", newUser)
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => this.setState({ errors: err.response.data }));
     this.props.registerUser(newUser);
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
   render() {
     const { errors } = this.state;
     const { user } = this.props.auth;
@@ -58,7 +59,7 @@ class Register extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="login">
                 <div>
-                  {user?user.name:null}
+                  {user ? user.name : null}
                   <div className="wc_text">Sign Up to ProjectInsta</div>
                   <br />
                 </div>
@@ -125,8 +126,15 @@ class Register extends Component {
   }
 }
 
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+  auth: state.auth,
+  errors: state.errors,
+});
 
 export default connect(mapStateToProps, { registerUser })(Register);
