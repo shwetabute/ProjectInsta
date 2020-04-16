@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import classnames from "classnames";
+import { connect } from 'mongoose';
 
 class Login extends Component {
   constructor() {
@@ -81,5 +82,5 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(mapStateToProps,{loginUser})(Login);
 
