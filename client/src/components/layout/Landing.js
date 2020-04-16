@@ -1,102 +1,72 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import axios from "axios";
-import classnames from "classnames";
-import './style_login.css';
+import "../../App.scss";
+import { Login, Register } from "../../components/auth/index";
 
-class Login extends Component {
-  constructor() {
-    super();
+class Landing extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      email: "",
-      password: "",
-      errors: {}
+      isLogginActive: true
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  componentDidMount() {
+    //Add .right by default
+    this.rightSide.classList.add("right");
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
+  changeState() {
+    const { isLogginActive } = this.state;
 
-    axios
-      .post("/api/users/login", user)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    if (isLogginActive) {
+      this.rightSide.classList.remove("right");
+      this.rightSide.classList.add("left");
+    } else {
+      this.rightSide.classList.remove("left");
+      this.rightSide.classList.add("right");
+    }
+    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
   }
 
   render() {
-    const { errors } = this.state;
+    const { isLogginActive } = this.state;
+    const current = isLogginActive ? "Register" : "Login";
+    const currentActive = isLogginActive ? "login" : "register";
     return (
-      <div className="style_login">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></link>  
-        <div className="row no-gutters">
-         <div className="col">
-          <div className="leftside">
-            <div className="body"></div>
+      <div className="App">
+        <div className="login">
+          <div className="container" ref={ref => (this.container = ref)}>
+            {isLogginActive && (
+              <Login containerRef={ref => (this.current = ref)} />
+            )}
+            {!isLogginActive && (
+              <Register containerRef={ref => (this.current = ref)} />
+            )}
           </div>
+          <RightSide
+            current={current}
+            currentActive={currentActive}
+            containerRef={ref => (this.rightSide = ref)}
+            onClick={this.changeState.bind(this)}
+          />
         </div>
-        <div className="col">
-          <div className="rightside">
-            <form onSubmit={this.onSubmit}>
-              <div className="login">
-                <div>
-                <div className="wc_text">Login to ProjectInsta</div><br/>
-                <input
-                  type="email"
-                  className={classnames("login_email", {
-                    "is-invalid": errors.email
-                  })}
-                  placeholder="Email Address"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                </div>
-                <div>
-                <input
-                  type="password"
-                  className={classnames("login_password", {
-                    "is-invalid": errors.password
-                  })}
-                  placeholder="Password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
-                <div>
-                  <input type="submit" className="btn_submit" value="Login"/>
-                </div><br/><br/><br/><br/>
-                <div className="noaccount_text">Don't have an account?</div>
-                <Link className="nav-link" to="/register">
-                  <div className="btn_submit sign_up_link">
-                    Sign Up
-                  </div>
-                </Link><br/>
-              </div>
-            </form>
-          </div>
-        </div> 
-        </div>     
-      </div>  
+      </div>
     );
   }
 }
 
-export default Login;
+const RightSide = props => {
+  return (
+    <div
+      className="right-side"
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className="inner-container">
+        <div className="text">{props.current}</div>
+      </div>
+    </div>
+  );
+};
+
+export default Landing;
