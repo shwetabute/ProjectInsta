@@ -45,7 +45,7 @@ export class Register extends Component {
       <div className="header">Register</div>
       <div className="content">
         <div className="image">
-          <img src={loginImg} />
+          <img src={loginImg}/>
         </div>
         <form onSubmit={this.onSubmit}>
           <div className="form">
