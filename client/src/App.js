@@ -11,6 +11,7 @@ import { Component } from "react";
 import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from 'jwt-decode';
 import { SET_CURRENT_USER } from "./action/types";
+import {logoutUser} from './action/authActions'
 
 
 if (localStorage.jwtToken) {
