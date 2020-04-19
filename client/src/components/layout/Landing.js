@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import "../../App.scss";
-import { Login, Register } from "../../components/auth/index";
+import "../auth/style.scss";
+//import {Login, Register}  from "../auth/index";
+import Login from "../auth/Login";
+import Register from "../auth/Register";
 
-class Landing extends React.Component {
+class Landing extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       isLogginActive: true
     };

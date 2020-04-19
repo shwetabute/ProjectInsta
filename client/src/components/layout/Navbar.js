@@ -8,7 +8,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         {/* <div className="container"> */}
           <Link className="navbar-brand" to="/">
-          <h3 className="header_size">Post<span className="insta_color">Ingram</span></h3>
+          <h3 className="header_size">Social<span className="insta_color">Net</span></h3>
           
     </Link>
           <button
