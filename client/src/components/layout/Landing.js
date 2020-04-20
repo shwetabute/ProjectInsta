@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.scss";
-import "../auth/style.scss";
+//mport "../auth/style.scss";
 //import {Login, Register}  from "../auth/index";
 import Login from "../auth/Login";
 import Register from "../auth/Register";

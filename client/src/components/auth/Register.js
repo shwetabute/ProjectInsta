@@ -4,8 +4,9 @@ import classnames from "classnames";
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import PropTypes from 'prop-types';
-import loginImg from "../../login.svg";
+import loginImg from "../../register1.svg";
 import "./style.scss";
+import '../../App.scss';
 
 class Register extends Component {
   constructor() {

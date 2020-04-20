@@ -7,6 +7,7 @@ import loginImg from '../../login.svg';
 import axios from "axios";
 // import { createHashHistory as history } from 'history';
 import './style.scss';
+import '../../App.scss';
 
 class Login extends Component {
   constructor() {

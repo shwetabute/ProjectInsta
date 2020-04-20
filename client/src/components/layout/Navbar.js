@@ -23,7 +23,7 @@ class Navbar extends Component {
               </li>
               <li className="nav-item">
                 {/* <Link className="nav-link" to="/login"> */}
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/login">
                   Login
                 </Link>
               </li>
@@ -61,7 +61,7 @@ class Navbar extends Component {
       </ul>
     );
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         {/* <div className="container"> */}
           <Link className="navbar-brand" to="/">
           <h3 className="header_size">Social<span className="insta_color">Net</span></h3>

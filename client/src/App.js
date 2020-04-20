@@ -43,11 +43,13 @@ class App extends Component {
     return (
     <Provider store={store}> 
       <Router>
-        <Navbar/>
+        
         <div className="App">
+        <Navbar/>
           <Route exact path= "/" component={Landing} /> 
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+        
         </div>
         <Footer/>
       </Router>
