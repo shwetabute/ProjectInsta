@@ -29,6 +29,7 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2"
   }
 }

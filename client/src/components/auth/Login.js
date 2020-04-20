@@ -5,7 +5,7 @@ import { loginUser } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 import loginImg from '../../login.svg';
 import axios from "axios";
-//import { createHashHistory as history } from 'history';
+// import { createHashHistory as history } from 'history';
 import './style.scss';
 
 class Login extends Component {
