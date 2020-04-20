@@ -13,13 +13,23 @@ import Login from './components/auth/Login';
 import setAuthToken from './utils/setAuthToken';
 import { SET_CURRENT_USER } from './actions/types';
 import jwt_decode from 'jwt-decode';
+import { logoutUser } from './actions/authActions'
 
-
-if (localStorage.jwtToken){
-  //set auth header
-  setAuthToken(localStorage.jwtToken);
+if (localStorage.jwtToken) {
   //decode
   const decoded = jwt_decode(localStorage.jwtToken);
+  //check for expiry of the token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    //LogOut the user 
+    store.dispatch(logoutUser());
+    //Redirect the user to login page
+    window.location.href = '/login';
+  }
+
+  //set auth header
+  setAuthToken(localStorage.jwtToken);
+  
   //dispatch call
   store.dispatch({
     type: SET_CURRENT_USER,
