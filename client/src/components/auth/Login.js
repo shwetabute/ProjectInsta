@@ -8,6 +8,7 @@ import axios from "axios";
 // import { createHashHistory as history } from 'history';
 import './style.scss';
 import '../../App.scss';
+import  TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   constructor() {
@@ -67,36 +68,27 @@ class Login extends Component {
           </div>
           <form onSubmit={this.onSubmit}>
               <div className="form">
-                <div className="form-group">
-                  <input
-                        type="email"
-                        className={classnames("form-control form-control-lg", {
-                          "is-invalid": errors.email
-                        })}
-                        placeholder="Email Address"
+              <div className="form-group">
+                <TextFieldGroup
+                  type="email"
+                  placeholder="Email Address"
                         name="email"
                         value={this.state.email}
                         onChange={this.onChange}
-                        
-                      />
-                      {errors.email && (
-                        <div className="invalid-feedback">{errors.email}</div>
-                      )}
+                        error={errors.email}
+                />
+                 
                 </div>
-                  <div className="form-group">
-                    <input
-                          type="password"
-                          className={classnames("form-control form-control-lg", {
-                            "is-invalid": errors.password
-                          })}
-                          placeholder="Password"
-                          name="password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                        />
-                        {errors.password && (
-                          <div className="invalid-feedback">{errors.password}</div>
-                        )}
+              <div className="form-group">
+                <TextFieldGroup
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  error={errors.password}
+                />
+                    
                   </div>
                   {/* <div className="footer"> */}
                   <div>
