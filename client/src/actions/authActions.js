@@ -43,8 +43,23 @@ export const loginUser = userData => dispatch =>{
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data
-          //payload: ((err||{}).response||{}).data || 'Error unexpected'
         })
 
       );
 };
+
+//logout user
+export const logoutUser = () => dispatch => {
+  //Remove the token from localStorage
+  localStorage.removeItem('jwtToken');
+
+  //remove the token from authheader
+  setAuthToken(false)
+
+  //Cleanup the redux store
+  dispatch({
+    type: SET_CURRENT_USER,
+    payload: {}
+  })
+
+}

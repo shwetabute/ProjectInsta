@@ -40,10 +40,10 @@ class Landing extends Component {
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
+              <Login containerRef={ref => (this.current = ref)} history= {this.props.history}/>
             )}
             {!isLogginActive && (
-              <Register containerRef={ref => (this.current = ref)} />
+              <Register containerRef={ref => (this.current = ref)} history={this.props.history}/>
             )}
           </div>
           <RightSide
