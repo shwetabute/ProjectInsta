@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import loginImg from "../../register1.svg";
 import "./style.scss";
 import '../../App.scss';
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
   constructor() {
@@ -58,12 +59,21 @@ class Register extends Component {
         </div>
         <form onSubmit={this.onSubmit}>
           <div className="form">
-            <div className="form-group">
-              <input
+              <div className="form-group">
+                <TextFieldGroup
+                  type="text"
+                   
+                   placeholder="Name"
+                    name="name"
+                    value={this.state.name}
+                  onChange={this.onChange}
+                  error={errors.name}
+                />
+              {/* <input
                     type="text"
                     className={classnames("sign_up_text", {
                       "is-invalid": errors.name
-                    })}
+                   })}
                     placeholder="Name"
                     name="name"
                     value={this.state.name}
@@ -71,10 +81,19 @@ class Register extends Component {
                   />
                   {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
-                  )}
+                  )} */}
               </div>
-            <div className="form-group">
-              <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="email"
+                   
+                   placeholder="Email Address"
+                    name="email"
+                    value={this.state.email}
+                  onChange={this.onChange}
+                  error={errors.email}
+                />
+              {/* <input
                     type="email"
                     className={classnames("sign_up_email", {
                       "is-invalid": errors.email
@@ -86,10 +105,19 @@ class Register extends Component {
                   />
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
-                  )}
+                  )} */}
              </div>
-            <div className="form-group">
-                <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="password"
+                   
+                   placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                  onChange={this.onChange}
+                  error={errors.password}
+                />
+                {/* <input
                   type="password"
                   className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.password
@@ -101,10 +129,19 @@ class Register extends Component {
                 />
                 {errors.password && (
                   <div className="invalid-feedback">{errors.password}</div>
-                )}
+                )} */}
              </div>
-             <div className="form-group">
-              <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="password"
+                   
+                   placeholder="Confirm Password"
+                    name="password2"
+                    value={this.state.password2}
+                  onChange={this.onChange}
+                  error={errors.password2}
+                />
+              {/* <input
                   type="password"
                   className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.password2
@@ -116,7 +153,7 @@ class Register extends Component {
                 />
                 {errors.password2 && (
                   <div className="invalid-feedback">{errors.password2}</div>
-                )}
+                )} */}
              </div>
              <input type="submit" className="btn btn-info btn-block mt-4" />
           </div>
