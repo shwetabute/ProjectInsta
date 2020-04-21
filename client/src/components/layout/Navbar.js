@@ -34,7 +34,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/feed">
-            Post Feed
+          <i class="fas fa-plus"></i> Post Feed
           </Link>
         </li>
         <li className="nav-item">
