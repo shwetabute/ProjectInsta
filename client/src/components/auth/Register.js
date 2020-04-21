@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
 import classnames from "classnames";
+//import "../layout/style_login.css";
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
 import loginImg from "../../register1.svg";
+import "./style.scss";
+import '../../App.scss';
+import TextFieldGroup from "../common/TextFieldGroup";
 
-export class Register extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -31,14 +37,18 @@ export class Register extends Component {
       password2: this.state.password2
     };
 
-    axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+      this.setState({errors: nextProps.errors});
+    }
   }
 
   render() {
     const { errors } = this.state;
+    const { user } = this.props.auth;
 
     return (
       <div className="base-container" ref={this.props.containerRef}>
@@ -49,12 +59,21 @@ export class Register extends Component {
         </div>
         <form onSubmit={this.onSubmit}>
           <div className="form">
-            <div className="form-group">
-              <input
+              <div className="form-group">
+                <TextFieldGroup
+                  type="text"
+                   
+                   placeholder="Name"
+                    name="name"
+                    value={this.state.name}
+                  onChange={this.onChange}
+                  error={errors.name}
+                />
+              {/* <input
                     type="text"
                     className={classnames("sign_up_text", {
                       "is-invalid": errors.name
-                    })}
+                   })}
                     placeholder="Name"
                     name="name"
                     value={this.state.name}
@@ -62,10 +81,19 @@ export class Register extends Component {
                   />
                   {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
-                  )}
+                  )} */}
               </div>
-            <div className="form-group">
-              <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="email"
+                   
+                   placeholder="Email Address"
+                    name="email"
+                    value={this.state.email}
+                  onChange={this.onChange}
+                  error={errors.email}
+                />
+              {/* <input
                     type="email"
                     className={classnames("sign_up_email", {
                       "is-invalid": errors.email
@@ -77,10 +105,19 @@ export class Register extends Component {
                   />
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
-                  )}
+                  )} */}
              </div>
-            <div className="form-group">
-                <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="password"
+                   
+                   placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                  onChange={this.onChange}
+                  error={errors.password}
+                />
+                {/* <input
                   type="password"
                   className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.password
@@ -92,10 +129,19 @@ export class Register extends Component {
                 />
                 {errors.password && (
                   <div className="invalid-feedback">{errors.password}</div>
-                )}
+                )} */}
              </div>
-             <div className="form-group">
-              <input
+              <div className="form-group">
+              <TextFieldGroup
+                  type="password"
+                   
+                   placeholder="Confirm Password"
+                    name="password2"
+                    value={this.state.password2}
+                  onChange={this.onChange}
+                  error={errors.password2}
+                />
+              {/* <input
                   type="password"
                   className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.password2
@@ -107,7 +153,7 @@ export class Register extends Component {
                 />
                 {errors.password2 && (
                   <div className="invalid-feedback">{errors.password2}</div>
-                )}
+                )} */}
              </div>
              <input type="submit" className="btn btn-info btn-block mt-4" />
           </div>
@@ -119,5 +165,16 @@ export class Register extends Component {
     }
   }
   
-  export default Register;
+ Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  }
+
+  const mapStateToProps = (state) => ({
+    auth: state.auth,
+    errors: state.errors
+  });
   
+  export default connect(mapStateToProps, {registerUser})(Register);
+ 

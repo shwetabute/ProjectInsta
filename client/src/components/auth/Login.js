@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import classnames from 'classnames';
+import { loginUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
+import loginImg from '../../login.svg';
 import axios from "axios";
-import classnames from "classnames";
-import loginImg from "../../login.svg";
+// import { createHashHistory as history } from 'history';
+import './style.scss';
+import '../../App.scss';
+import  TextFieldGroup from '../common/TextFieldGroup';
 
-export class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,15 +31,32 @@ export class Login extends Component {
     e.preventDefault();
     const user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
 
-    axios
-      .post("/api/users/login", user)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.loginUser(user);
+
+    // axios
+    //   .post("api/users/login", user)
+    //   .then(res => console.log(res.date))
+    //   .catch(err => this.setState({ errors: err.response.data }));
   }
 
+  componentDidMount(){
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.auth.isAuthenticated){
+      this.props.history.push("/dashboard");
+    }
+    if (nextProps.errors){
+      this.setState({errors: nextProps.errors});
+    }
+  }
+    
   render() {
     const { errors } = this.state;
     return (
@@ -44,39 +68,32 @@ export class Login extends Component {
           </div>
           <form onSubmit={this.onSubmit}>
               <div className="form">
-                <div className="form-group">
-                  <input
-                        type="email"
-                        className={classnames("form-control form-control-lg", {
-                          "is-invalid": errors.email
-                        })}
-                        placeholder="Email Address"
+              <div className="form-group">
+                <TextFieldGroup
+                  type="email"
+                  placeholder="Email Address"
                         name="email"
                         value={this.state.email}
                         onChange={this.onChange}
-                      />
-                      {errors.email && (
-                        <div className="invalid-feedback">{errors.email}</div>
-                      )}
+                        error={errors.email}
+                />
+                 
                 </div>
-                  <div className="form-group">
-                    <input
-                          type="password"
-                          className={classnames("form-control form-control-lg", {
-                            "is-invalid": errors.password
-                          })}
-                          placeholder="Password"
-                          name="password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                        />
-                        {errors.password && (
-                          <div className="invalid-feedback">{errors.password}</div>
-                        )}
+              <div className="form-group">
+                <TextFieldGroup
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  error={errors.password}
+                />
+                    
                   </div>
                   {/* <div className="footer"> */}
+                  <div>
                     <input type="submit" className="btn btn-info btn-block mt-4" />
-                  {/* </div> */}
+                  </div>
                   
               </div>
             </form>
@@ -88,5 +105,16 @@ export class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
 
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
+//export default Login;
