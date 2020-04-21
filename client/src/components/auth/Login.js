@@ -5,8 +5,8 @@ import { loginUser } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 import loginImg from '../../login.svg';
 import axios from "axios";
-//import { createHashHistory as history } from 'history';
 import './style.scss';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   constructor() {
@@ -65,49 +65,31 @@ class Login extends Component {
             <img src={loginImg} />
           </div>
           <form onSubmit={this.onSubmit}>
-              <div className="form">
-                <div className="form-group">
-                  <input
-                        type="email"
-                        className={classnames("form-control form-control-lg", {
-                          "is-invalid": errors.email
-                        })}
-                        placeholder="Email Address"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        
-                      />
-                      {errors.email && (
-                        <div className="invalid-feedback">{errors.email}</div>
-                      )}
+              {/* <div className="form"> */}
+              <div className="form-group">
+                  <TextFieldGroup
+                    placeholder="Email Address"
+                    name="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
                 </div>
-                  <div className="form-group">
-                    <input
-                          type="password"
-                          className={classnames("form-control form-control-lg", {
-                            "is-invalid": errors.password
-                          })}
-                          placeholder="Password"
-                          name="password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                        />
-                        {errors.password && (
-                          <div className="invalid-feedback">{errors.password}</div>
-                        )}
-                  </div>
-                  {/* <div className="footer"> */}
-                  <div>
-                    <input type="submit" className="btn btn-info btn-block mt-4" />
-                  </div>
-                  
-              </div>
-            </form>
+                <div className="form-group">
+                  <TextFieldGroup
+                    placeholder="Password"
+                    name="password"
+                    type="password"
+                    error={errors.password}
+                    value={this.state.password}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <input type="submit" className="btn btn-info btn-block mt-4" />
+              </form>
+            </div>
           </div>
-            
-          </div>
-          
     );
   }
 }
