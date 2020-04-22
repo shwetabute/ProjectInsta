@@ -11,6 +11,7 @@ import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import RstPswd from './components/auth/Password';
 import setAuthToken from './utils/setAuthToken';
 import { SET_CURRENT_USER } from './actions/types';
 import jwt_decode from 'jwt-decode';
@@ -47,7 +48,7 @@ class App extends Component {
         
         <div className="App">
         <Navbar/>
-          <Route exact path= "/" component={Landing} /> 
+          <Route exact path="/" component={Landing} /> 
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route
@@ -55,6 +56,8 @@ class App extends Component {
                   path="/create-profile"
                   component={CreateProfile}
                 />
+          <Route exact path="/reset" component={RstPswd} />
+        
         </div>
         <Footer/>
       </Router>
