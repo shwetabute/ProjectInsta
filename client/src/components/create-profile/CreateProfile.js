@@ -49,8 +49,8 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
+      
       handle: this.state.handle,
-     
       website: this.state.website,
       location: this.state.location,
        bio: this.state.bio,

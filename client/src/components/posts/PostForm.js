@@ -37,6 +37,7 @@ class PostForm extends Component {
 
     this.props.addPost(newPost);
     this.setState({ text: '' });
+    this.setState({ postimage: '' });
   }
 
   onChange(e) {
@@ -62,7 +63,7 @@ class PostForm extends Component {
                 />
                 <TextAreaFieldGroup
                   placeholder="Post an Image "
-                  name="postimaget"
+                  name="postimage"
                   value={this.state.postimage}
                   onChange={this.onChange}
                   error={errors.postimage}
