@@ -4,6 +4,7 @@ import axios from "axios";
 import "./style.scss";
 import TextFieldGroup from "../common/TextFieldGroup";
 import loginImg from '../../login.svg';
+import { Link } from 'react-router-dom';
 
 
 class RstPswd extends Component  {
@@ -25,6 +26,7 @@ class RstPswd extends Component  {
   }
 
   onSubmit(e) {
+    
     e.preventDefault();
     const newpwd = {
       email: this.state.email,
@@ -34,9 +36,14 @@ class RstPswd extends Component  {
 
     axios
       .post("api/users/rstpwd", newpwd)
-      .then(res => console.log(res.data))
+      .then(res => { 
+        alert("Congratulations! Your password has been changed successfully.");
+        console.log(res.data)
+        this.props.history.push('/login')
+      })
       .catch(err => this.setState({ errors: err.response.data }));
   }
+ 
 
   render() {
     const { errors } = this.state;
@@ -80,14 +87,19 @@ class RstPswd extends Component  {
                   error={errors.password2}
                 />
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                
+                <input type="submit" className="btn btn-info btn-block mt-4"  />
+               
           </div>
           </form>
+          
         </div>
         
       </div>
       );
+      
     }
+    
 }
 
 export default RstPswd;

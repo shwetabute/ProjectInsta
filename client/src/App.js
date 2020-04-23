@@ -51,16 +51,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} /> 
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-<<<<<<< HEAD
-          <Route
-                  exact
-                  path="/create-profile"
-                  component={CreateProfile}
-                />
-          <Route exact path="/reset" component={RstPswd} />
-=======
           <Route exact path="/reset" component={RstPwd} />
->>>>>>> c6feb7d1d3a01447a795de4fbb0a5a6822fc15b5
         
         </div>
         <Footer/>

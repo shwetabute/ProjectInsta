@@ -40,12 +40,8 @@ class Login extends Component {
   componentDidMount(){
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
-      //document.body.style.background= 'pink'; 
-
+      //document.body.style.background= 'pink';
     }
-    
-
-
   }
 
   componentWillReceiveProps(nextProps){
