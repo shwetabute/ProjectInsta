@@ -11,7 +11,6 @@ import store from './store';
 import './App.scss';
 import PrivateRoute from './components/common/PrivateRoute';
 
-import CreateProfile from './components/create-profile/CreateProfile';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
