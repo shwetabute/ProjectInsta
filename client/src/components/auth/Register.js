@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classnames from "classnames";
+
 //import "../layout/style_login.css";
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
