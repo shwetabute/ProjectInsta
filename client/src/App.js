@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { logoutUser } from './actions/authActions'
+import RstPwd from './components/auth/Password';
 // import { clearCurrentProfile } from './actions/profileActions';
 
 import { Provider } from 'react-redux';
@@ -64,7 +65,8 @@ class App extends Component {
           <Route exact path= "/" component={Landing} /> 
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/reset" component={RstPwd} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />

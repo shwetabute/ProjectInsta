@@ -8,6 +8,8 @@ const passport = require('passport');
 const User = require("../../models/User");
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validatePwdresetInput = require('../../validation/pwdreset');
+
 
 // @route   POST api/users/register
 // @desc    Register user
@@ -111,5 +113,36 @@ router.get(
     });
   }
 );
+
+// @route   POST api/users/rstpwd
+// @desc    Reset the password -- Forgot password logic
+// @access  Public
+router.post("/rstpwd", (req, res) => {
+  var update = req.body
+  const { errors, isValid } = validatePwdresetInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors)
+  }
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) throw err;
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      User.findOne({email: req.body.email})
+      .then(user => {
+        if (!user){
+          return res.status(404).json({email: 'User not found!'});
+        } else {
+          User.findOneAndUpdate(
+            { "email" : req.body.email },
+            { $set: { "password" : hash } },
+            { new: true }
+            ).then(user => res.json(user));
+          }
+        })
+    .catch(err => console.log(err))
+    });
+  });
+});
+
 
 module.exports = router;

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 import loginImg from '../../login.svg';
-
-// import { createHashHistory as history } from 'history';
 import './style.scss';
 import '../../App.scss';
 import  TextFieldGroup from '../common/TextFieldGroup';
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -36,10 +35,6 @@ class Login extends Component {
 
     this.props.loginUser(user);
 
-    // axios
-    //   .post("api/users/login", user)
-    //   .then(res => console.log(res.date))
-    //   .catch(err => this.setState({ errors: err.response.data }));
   }
 
   componentDidMount(){
@@ -79,7 +74,7 @@ class Login extends Component {
                 />
                  
                 </div>
-              <div className="form-group">
+                <div className="form-group">
                 <TextFieldGroup
                   type="password"
                   placeholder="Password"
@@ -87,10 +82,10 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChange}
                   error={errors.password}
-                />
-                    
-                  </div>
+                />    
+                </div>
                   {/* <div className="footer"> */}
+                  <Link className="rstpwd" to="/reset">Forgot password?</Link>
                   <div>
                     <input type="submit" className="btn btn-info btn-block mt-4" />
                   </div>
