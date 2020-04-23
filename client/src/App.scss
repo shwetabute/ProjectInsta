@@ -23,24 +23,28 @@ body,
   
 }
 
-.create-profile, .dashboard, .feed{
-  width: auto;
+.create-profile, .feed{
+    width: 100vw;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     // position: relative;
-    background:  hsla(40, 2%, 34%, 0.822);
+    background:  hsla(0, 0%, 99%, 0.938);
     color: rgb(0, 0, 0);
-    box-shadow: 0px 0px 12px 2px rgba(228, 223, 223, 0.2);
-    border-radius: 4px;
+    // box-shadow: 0px 0px 12px 2px rgba(228, 223, 223, 0.2);
+    // border-radius: 4px;
     padding: 17px 20px;
-    margin: 15px;
-    padding-bottom:15px;
+    margin: -15px;
+    padding-top:35px;
     font-family: fantasy;
-   
+    font-size: medium;
     p{
       size: 10px;
     }
+}
+.card{
+  width: 60%;
   
 }
 .form-group{
@@ -73,6 +77,8 @@ body,
   font-family: "Open Sans", sans-serif;
   // background-image: url("./background1.jpg");
   // background-attachment: fixed;
+  // width: 100vw;
+  // height: 100vh;
   
 
 }
