@@ -60,5 +60,15 @@ const profileSchema = new Schema({
       }
     }
   ],
+
+  savePost:[
+    {
+      postId: {
+        type: Schema.Types.ObjectId,
+        ref: 'post'
+      }
+    }
+  ] 
+
 });
 module.exports = Profile = mongoose.model("profile", profileSchema);
