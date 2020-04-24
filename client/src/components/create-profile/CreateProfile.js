@@ -122,16 +122,20 @@ class CreateProfile extends Component {
                   error={errors.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
-
-
-                <TextFieldGroup
-                  placeholder="Gender"
-                  name="gender"
-                  value={this.state.gender}
-                  onChange={this.onChange}
-                  error={errors.gender}
-                  
-                />
+                  <p>Gender</p>
+                  <label>
+                  <input type="radio" value="Male" name="gender"
+                                checked={this.state.gender === 'Male'} 
+                                onChange={this.onChange} />
+                  Male
+                </label>
+                <label>
+                  <input type="radio" value="Female" name="gender"
+                                checked={this.state.gender === 'Female'} 
+                                onChange={this.onChange} />
+                  Female
+                </label>
+                        
                 
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
