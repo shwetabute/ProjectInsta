@@ -26,6 +26,10 @@ body,
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
-  
+}
+
+
+.rstpwd {
+  margin-top: -25px;
+  margin-left: -150px;
 }

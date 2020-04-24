@@ -10,7 +10,6 @@ const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 const validatePwdresetInput = require('../../validation/pwdreset');
 
-
 // @route   POST api/users/register
 // @desc    Register user
 // @access  Public
@@ -37,7 +36,7 @@ router.post('/register', (req, res) => {
           password: req.body.password,
           avatar
         });
-
+        
         bcrypt.genSalt(10, (err, salt) => {
           if (err) throw err;
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -97,13 +96,44 @@ router.post('/login', (req,res)=> {
       }
     })
     .catch(err => console.log(err));
-})
+});
+
+
+// @route   POST api/users/rstpwd
+// @desc    Reset the password -- Forgot password logic
+// @access  Public
+router.post("/rstpwd", (req, res) => {
+  var update = req.body
+  const { errors, isValid } = validatePwdresetInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors)
+  }
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) throw err;
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      User.findOne({email: req.body.email})
+      .then(user => {
+        if (!user){
+          return res.status(404).json({email: 'User not found!'});
+        } else {
+          User.findOneAndUpdate(
+            { "email" : req.body.email },
+            { $set: { "password" : hash } },
+            { new: true }
+            ).then(user => res.json(user));
+          }
+        })
+    .catch(err => console.log(err))
+    });
+  });
+});
+    
 
 // @route   GET api/users/current
 // @desc    Return current user information
 // @access  Private
-router.get(
-  '/current',
+router.get('/current',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
     res.json({

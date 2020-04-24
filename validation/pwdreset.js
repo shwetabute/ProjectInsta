@@ -16,7 +16,7 @@ module.exports = function validatePwdresetInput(data) {
     errors.password = "Password must be between 6 and 30 characters";
   }
 
-  if (isEmpty(data.password)) { 
+  if (isEmpty(data.password)) {
     errors.password = "Password field is required";
   }
 

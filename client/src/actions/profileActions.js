@@ -7,8 +7,6 @@ import {
   GET_ERRORS,
   SET_CURRENT_USER
 } from './types';
-
- // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
