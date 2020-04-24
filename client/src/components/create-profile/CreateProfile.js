@@ -135,6 +135,18 @@ class CreateProfile extends Component {
                                 onChange={this.onChange} />
                   Female
                 </label>
+                <label>
+                  <input type="radio" value="Custom" name="gender"
+                                checked={this.state.gender === 'Custom'} 
+                                onChange={this.onChange} />
+                  Custom
+                </label>
+                <label>
+                  <input type="radio" value="Prefer Not to Say" name="gender"
+                                checked={this.state.gender === 'Prefer Not to Say'} 
+                                onChange={this.onChange} />
+                  Prefer Not to Say
+                </label>
                         
                 
                 <TextAreaFieldGroup
