@@ -44,11 +44,11 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-  if (!isEmpty(data.profilePic)) {
-    if (!Validator.isURL(data.profilePic)) {
-      errors.profilePic = "Not a valid URL";
-    }
-  }
+  // if (!isEmpty(data.profilePic)) {
+  //   if (!Validator.isURL(data.profilePic)) {
+  //     errors.profilePic = "Not a valid URL";
+  //   }
+  // }
 
   return {
     errors,

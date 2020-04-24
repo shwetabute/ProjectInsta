@@ -17,16 +17,9 @@ class CreateProfile extends Component {
       location: '',
       bio: '',
       gender: '',
-      phonenumber:'',
-      // status: '',
-      // skills: '',
-      // githubusername: '',
-      
-      // twitter: '',
-      // facebook: '',
-      // linkedin: '',
-      // youtube: '',
-      // instagram: '',
+      phonenumber: '',
+      profilePic: "",
+     
       errors: {}
     };
 
@@ -46,8 +39,7 @@ class CreateProfile extends Component {
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
-      // // Bring skills array back to CSV
-      // const skillsCSV = profile.skills.join(',');
+      
 
       // If profile field doesnt exist, make empty string
       profile.company = !isEmpty(profile.company) ? profile.company : '';
@@ -56,26 +48,9 @@ class CreateProfile extends Component {
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.gender = !isEmpty(profile.gender) ? profile.gender : '';
       profile.phonenumber = !isEmpty(profile.phonenumber) ? profile.phonenumber : '';
+      profile.profilePic=!isEmpty(profile.profilePic) ? profile.profilePic : '';
 
-      // profile.githubusername = !isEmpty(profile.githubusername)
-      //   ? profile.githubusername
-      //   : '';
-      // profile.social = !isEmpty(profile.social) ? profile.social : {};
-      // profile.twitter = !isEmpty(profile.social.twitter)
-      //   ? profile.social.twitter
-      //   : '';
-      // profile.facebook = !isEmpty(profile.social.facebook)
-      //   ? profile.social.facebook
-      //   : '';
-      // profile.linkedin = !isEmpty(profile.social.linkedin)
-      //   ? profile.social.linkedin
-      //   : '';
-      // profile.youtube = !isEmpty(profile.social.youtube)
-      //   ? profile.social.youtube
-      //   : '';
-      // profile.instagram = !isEmpty(profile.social.instagram)
-      //   ? profile.social.instagram
-      //   : '';
+      
 
       // Set component fields state
       this.setState({
@@ -84,18 +59,10 @@ class CreateProfile extends Component {
         location: profile.location,
         bio: profile.bio,
         gender: profile.gender,
-        phonenumber:profile.phonenumber
+        phonenumber: profile.phonenumber,
+        profilePic:profile.profilePic
 
-        // company: profile.company,
-        // status: profile.status,
-        // skills: skillsCSV,
-        // githubusername: profile.githubusername,
-        
-        // twitter: profile.twitter,
-        // facebook: profile.facebook,
-        // linkedin: profile.linkedin,
-        // youtube: profile.youtube,
-        // instagram: profile.instagram
+       
       });
     }
   }
@@ -110,16 +77,10 @@ class CreateProfile extends Component {
       location: this.state.location,
       bio: this.state.bio,
       phonenumber: this.state.phonenumber,
-      gender:this.state.gender
+      gender: this.state.gender,
+      profilePic:this.state.profilePic
 
-      // status: this.state.status,
-      // skills: this.state.skills,
-      // githubusername: this.state.githubusername,
-      // twitter: this.state.twitter,
-      // facebook: this.state.facebook,
-      // linkedin: this.state.linkedin,
-      // youtube: this.state.youtube,
-      // instagram: this.state.instagram
+      
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -128,6 +89,45 @@ class CreateProfile extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+   //upload img code
+  serializeAsBase64 = (file) => {
+    if (file === null) {
+      return Promise.reject("getBase64: empty file specified");
+    }
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (
+          reader.result &&
+          typeof reader.result === "string" &&
+          reader.result.startsWith("data:image")
+        ) {
+          resolve(reader.result);
+        } else {
+          reject("Not supported file format. Please select an image.");
+        }
+      };
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  UploadImage = async (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const picture = event.target.files[0];
+      if (picture) {
+        try {
+          const profilePic = await this.serializeAsBase64(picture);
+          this.setState({
+            profilePic: profilePic,
+          });
+        } catch (err) {
+         this.setState({errors :err})
+        }
+      }
+    }
+  };
 
   render() {
     const { errors} = this.state;
@@ -169,13 +169,44 @@ class CreateProfile extends Component {
                   error={errors.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
-                <TextFieldGroup
-                  placeholder="Gender"
-                  name="gender"
-                  value={this.state.gender}
-                  onChange={this.onChange}
-                  error={errors.gender}
+                <p>Gender</p>
+                  <label>
+                  <input type="radio" value="Male" name="gender"
+                                checked={this.state.gender === 'Male'} 
+                                onChange={this.onChange} />
+                  Male
+                </label>
+                <label>
+                  <input type="radio" value="Female" name="gender"
+                                checked={this.state.gender === 'Female'} 
+                                onChange={this.onChange} />
+                  Female
+                </label>
+                <label>
+                  <input type="radio" value="Custom" name="gender"
+                                checked={this.state.gender === 'Custom'} 
+                                onChange={this.onChange} />
+                  Custom
+                </label>
+                <label>
+                  <input type="radio" value="Prefer Not to Say" name="gender"
+                                checked={this.state.gender === 'Prefer Not to Say'} 
+                                onChange={this.onChange} />
+                  Prefer Not to Say
+                </label>
+
+                {this.state.profilePic && (
+                  <img src={this.state.profilePic} height="50px" width="50px" />
+                )}
+
+                <input
+                  type="file"
+                  placeholder="Upload an image"
+                  name="profilePic"
+                  onChange={this.UploadImage}
+                  error={errors.profilePic}
                 />
+              
 
                 <TextFieldGroup
                   placeholder="Phone Number"
