@@ -4,6 +4,8 @@ const isEmpty = require("./is-empty");
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
+  console.log(JSON.stringify(data));
+
   data.handle = !isEmpty(data.handle) ? data.handle : "";
   // data.profilepic = !isEmpty(data.profilepic) ? data.profilepic : '';
 
@@ -16,11 +18,12 @@ module.exports = function validateProfileInput(data) {
   }
 
   if (!isEmpty(data.phonenumber)) {
-    if (data.phonenumber.length != 10) {
+    if (data.phonenumber.length !== 10) {
+      // console.log("no="+data.phonenumber.length)
       errors.phonenumber = "Phone Number needs to be of 10 digits";
     }
 
-    if (!Validator.isInt(data.phonenumber)) {
+    if (isNaN(data.phonenumber)) {
       errors.phonenumber = "Phone Number is invalid";
     }
   }
@@ -41,14 +44,14 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-  if (!isEmpty(data.profilePic)) {
-    if (!Validator.isURL(data.profilePic)) {
-      errors.profilePic = "Not a valid URL";
-    }
-  }
+  // if (!isEmpty(data.profilePic)) {
+  //   if (!Validator.isURL(data.profilePic)) {
+  //     errors.profilePic = "Not a valid URL";
+  //   }
+  // }
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };
