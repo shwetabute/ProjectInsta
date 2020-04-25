@@ -13,8 +13,8 @@ class ProfileHeader extends Component {
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src= {profile.user.avatar}
-                 
+                  src= {profile.profilePic? profile.profilePic:profile.user.avatar}
+                  height="150px" width="150px"
                   alt=""
                 />
               </div>
@@ -23,6 +23,7 @@ class ProfileHeader extends Component {
               <h1 className="display-4 text-center">{profile.user.name}</h1>
               <p className="lead text-center">
                 {profile.gender}{' '}
+                
 
                 {/* {isEmpty(profile.company) ? null : (
                   <span>at {profile.company}</span>

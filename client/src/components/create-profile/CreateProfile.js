@@ -84,11 +84,15 @@ class CreateProfile extends Component {
       if (picture) {
         try {
           const profilePic = await this.serializeAsBase64(picture);
+          if (profilePic .length > 25 * 1024) {
+            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            return;
+          }
           this.setState({
             profilePic: profilePic,
           });
         } catch (err) {
-         this.setState({errors :err})
+         this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
         }
       }
     }
