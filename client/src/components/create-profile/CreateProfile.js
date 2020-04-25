@@ -1,38 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import TextFieldGroup from "../common/TextFieldGroup";
+import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 // import InputGroup from '../common/InputGroup';
 
-import { createProfile } from '../../actions/profileActions';
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: '',
-      website: '',
-      bio: '',
-      location: '',
-      phonenumber: '',
-      gender: '',
-      // profilePic:''
+      handle: "",
+      website: "",
+      bio: "",
+      location: "",
+      phonenumber: "",
+      gender: "",
+      profilePic: "",
       //Need to add followers,following
 
-      // displaySocialInputs: false,
-      // company: '',
-      // status: '',
-      // skills: '',
-      // githubusername: '',
-     
-      // twitter: '',
-      // facebook: '',
-      // linkedin: '',
-      // youtube: '',
-      // instagram: '',
-      errors: {}
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
@@ -49,22 +38,13 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
-      
       handle: this.state.handle,
       website: this.state.website,
       location: this.state.location,
-       bio: this.state.bio,
+      bio: this.state.bio,
       phonenumber: this.state.phonenumber,
-      gender: this.state.gender
-        // company: this.state.company,
-      // status: this.state.status,
-      // skills: this.state.skills,
-      // githubusername: this.state.githubusername,
-      // twitter: this.state.twitter,
-      // facebook: this.state.facebook,
-      // linkedin: this.state.linkedin,
-      // youtube: this.state.youtube,
-      // instagram: this.state.instagram
+      gender: this.state.gender,
+      profilePic: this.state.profilePic,
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -74,9 +54,52 @@ class CreateProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  //upload img code
+  serializeAsBase64 = (file) => {
+    if (file === null) {
+      return Promise.reject("getBase64: empty file specified");
+    }
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (
+          reader.result &&
+          typeof reader.result === "string" &&
+          reader.result.startsWith("data:image")
+        ) {
+          resolve(reader.result);
+        } else {
+          reject("Not supported file format. Please select an image.");
+        }
+      };
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  UploadImage = async (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const picture = event.target.files[0];
+      if (picture) {
+        try {
+          const profilePic = await this.serializeAsBase64(picture);
+          if (profilePic .length > 25 * 1024) {
+            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            return;
+          }
+          this.setState({
+            profilePic: profilePic,
+          });
+        } catch (err) {
+         this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
+        }
+      }
+    }
+  };
+
   render() {
     const { errors } = this.state;
-   
 
     return (
       <div className="create-profile">
@@ -97,7 +120,19 @@ class CreateProfile extends Component {
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, nickname"
                 />
-                
+
+                {this.state.profilePic && (
+                  <img src={this.state.profilePic} height="50px" width="50px" />
+                )}
+
+                <input
+                  type="file"
+                  placeholder="Upload an image"
+                  name="profilePic"
+                  onChange={this.UploadImage}
+                  error={errors.profilePic}
+                />
+
                 <TextFieldGroup
                   placeholder="Phone Number"
                   name="phonenumber"
@@ -122,17 +157,48 @@ class CreateProfile extends Component {
                   error={errors.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
+                <p>Gender</p>
+                <label>
+                  <input
+                    type="radio"
+                    value="Male"
+                    name="gender"
+                    checked={this.state.gender === "Male"}
+                    onChange={this.onChange}
+                  />
+                  Male
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="Female"
+                    name="gender"
+                    checked={this.state.gender === "Female"}
+                    onChange={this.onChange}
+                  />
+                  Female
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="Custom"
+                    name="gender"
+                    checked={this.state.gender === "Custom"}
+                    onChange={this.onChange}
+                  />
+                  Custom
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="Prefer Not to Say"
+                    name="gender"
+                    checked={this.state.gender === "Prefer Not to Say"}
+                    onChange={this.onChange}
+                  />
+                  Prefer Not to Say
+                </label>
 
-
-                <TextFieldGroup
-                  placeholder="Gender"
-                  name="gender"
-                  value={this.state.gender}
-                  onChange={this.onChange}
-                  error={errors.gender}
-                  
-                />
-                
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
                   name="bio"
@@ -141,7 +207,7 @@ class CreateProfile extends Component {
                   error={errors.bio}
                   info="Tell us a little about yourself"
                 />
-                
+
                 <input
                   type="submit"
                   value="Submit"
@@ -158,12 +224,12 @@ class CreateProfile extends Component {
 
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, { createProfile })(
