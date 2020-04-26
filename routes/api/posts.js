@@ -213,13 +213,14 @@ router.delete(
 });
 
 
-// @route   SAVE api/posts/savepost/:postId
+// @route   POST api/posts/savepost/:postId
 // @desc    Save post
 // @access  Private
 
 router.post("/savepost/:postId",
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
+      // Save PostId in Profile.savePost array 
       Profile.findOne({ user: req.user.id }).then(profile => {
           if (
             profile.savePost.filter(savePost => savePost.postId.toString() === req.params.postId)
@@ -228,19 +229,28 @@ router.post("/savepost/:postId",
             return res
               .status(400)
               .json({ alreadySaved : 'This post is already saved' });
-            }
+          }
 
           // Add post id to savePost array in Profile Collection
           profile.savePost.unshift({ postId : req.params.postId });
+          
+        // Code to add UserId in Post.savePost array 
+        Post.findById(req.params.postId)
+        .then(post => { 
+          
+          // Add user id to savePost array
+          post.savePost.unshift({ user: req.user.id });
+          post.save({"_id" : post.id})
+        })
 
-          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    })
+        profile.save({"_id" : profile.id}).then(profile => res.json(profile));
+      })
     .catch(err => res.status(404).json({ postnotfound: "No profile exists" }));
 });
 
 
 
-// @route   SAVE api/posts/unsavepost/:postId
+// @route   POST api/posts/unsavepost/:postId
 // @desc    unsave post
 // @access  Private
 router.post('/unsavepost/:postId',
@@ -254,7 +264,7 @@ router.post('/unsavepost/:postId',
             return res
               .status(400)
               .json({ notSaved : 'This post is not yet saved' });
-            }
+          }
 
           // Remove post id from savePost array
           // Get remove index
@@ -265,61 +275,22 @@ router.post('/unsavepost/:postId',
           // Splice out of array
           profile.savePost.splice(removeIndex, 1);
 
+          
+          // Unsave the user_Id from Post.savePost array
+          Post.findById(req.params.postId)
+          .then(post => {
+  
+            // Get remove index
+            const removeIndex = post.savePost.map(item => item.user.toString()).indexOf(req.user.id);
+  
+            // Splice User Id out of Post.savePost array
+            post.savePost.splice(removeIndex, 1);
+  
+            // Save
+            post.save({"_id" : post.id})
+          })
 
           profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    
-    });
-});
-
-// @route   SAVE api/posts/savepost/:postId
-// @desc    Save post
-// @access  Private
-
-router.post("/savepost/:postId",
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-      Profile.findOne({ user: req.user.id }).then(profile => {
-          if (
-            profile.savePost.filter(savePost => savePost.postId.toString() === req.params.postId)
-              .length > 0
-          ) {
-            return res
-              .status(400)
-              .json({ alreadySaved : 'This post is already saved' });
-            }
-
-          // Add post id to savePost array in Profile Collection
-          profile.savePost.unshift({ postId : req.params.postId });
-
-          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    })
-    .catch(err => res.status(404).json({ postnotfound: "No profile exists" }));
-});
-
-
-router.post('/unsavepost/:postId',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-      Profile.findOne({ user: req.user.id }).then(profile => {
-          if (
-            profile.savePost.filter(savePost => savePost.postId.toString() === req.params.id)
-              .length = 0
-          ) {
-            return res
-              .status(400)
-              .json({ notSaved : 'This post is not yet saved' });
-            }
-
-          // Remove post id from savePost array
-          // Get remove index
-          const removeIndex = profile.savePost
-            .map(item => item.postId.toString())
-            .indexOf(req.params.postId);
-
-          // Splice out of array
-          profile.savePost.splice(removeIndex, 1);
-           profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    
     });
 });
 

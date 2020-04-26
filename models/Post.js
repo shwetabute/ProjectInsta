@@ -29,6 +29,14 @@ const PostSchema = new Schema({
       }
     }
   ],
+  savePost:[
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
+  ],
   comments: [
     {
       user: {

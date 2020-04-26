@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import { deletePost, addLike, removeLike, savePost, unsavePost } from '../../actions/postActions';
 
 class PostItem extends Component {
   onDeleteClick(id) {
@@ -18,6 +18,14 @@ class PostItem extends Component {
     this.props.removeLike(id);
   }
 
+  savePostClick(id) {
+    this.props.savePost(id);
+  }
+
+  unSavePostClick(id) {
+    this.props.unsavePost(id);
+  }
+
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
@@ -27,8 +35,19 @@ class PostItem extends Component {
     }
   }
 
+  //save unsave post if logic
+  findSavePost(savePost) {
+    const { auth } = this.props;
+    if (savePost.filter(savePost => savePost.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, auth, showActions, profile } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -46,7 +65,7 @@ class PostItem extends Component {
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
-            <div>{post.postimage}</div>
+            <img src={post.postimage}></img>
             {showActions ? (
               <span>
                 <button
@@ -68,9 +87,13 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
+
+
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Comments
                 </Link>
+
+
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
@@ -80,6 +103,25 @@ class PostItem extends Component {
                     <i className="fas fa-times" />
                   </button>
                 ) : null}
+
+
+                {/* savePost */}
+                {this.findSavePost(post.savePost) ? (
+                  <button
+                  onClick={this.unSavePostClick.bind(this, post._id)}
+                  type="button"
+                  className="btn btn-light mr-1"
+                  >
+                  <i className="fas fa-bookmark saveButton"/>
+                  </button>  )    
+                  :( <button
+                      onClick={this.savePostClick.bind(this, post._id)}
+                      type="button"
+                      className="btn btn-light mr-1"
+                    >
+                    <i className='far fa-bookmark'/>
+                    </button> )
+                }
               </span>
             ) : null}
           </div>
@@ -97,6 +139,8 @@ PostItem.propTypes = {
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
+  unsavePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -105,6 +149,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost })(
   PostItem
 );

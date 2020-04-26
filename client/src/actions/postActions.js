@@ -7,7 +7,7 @@ import {
   GET_POSTS,
   GET_POST,
   POST_LOADING,
-  DELETE_POST
+  DELETE_POST,
 } from './types';
 
 // Add Post
@@ -140,6 +140,32 @@ export const deleteComment = (postId, commentId) => dispatch => {
         payload: res.data
       })
     )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//Save Post
+export const savePost = id => dispatch => {
+  axios
+    .post(`/api/posts/savepost/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//Unsave Post
+export const unsavePost = id => dispatch => {
+  axios
+    .post(`api/posts/unsavepost/${id}`)
+    .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
