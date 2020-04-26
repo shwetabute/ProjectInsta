@@ -25,7 +25,7 @@ class Posts extends Component {
       <div className="feed">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-12">
               <PostForm />
               {postContent}
             </div>

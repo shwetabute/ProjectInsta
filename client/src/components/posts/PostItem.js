@@ -51,24 +51,29 @@ class PostItem extends Component {
 
     console.log(JSON.stringify(profile));
     return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-2">
-            <Link to="/profile">
+      <div className="card mb-3 col-md-7">
+        {/* <div className="col-md-2"> */}
+          <div class="card-body">
+          
+            <Link to="/profile" >
               <img
-                className="rounded-circle d-none d-md-block"
+                className="rounded-circle d-none d-sm-block profileImg"
                 src={profile.profilePic ? profile.profilePic : post.avatar}
                 alt=""
               />
             </Link>
-            <br />
-            <p className="text-center">{post.name}</p>
+            <p className="text-left name">{post.name}</p>
+            
+            
+            
+              
           </div>
-          <div className="col-md-10">
-            <p className="lead">{post.text}</p>
-            <img src={post.postimage}></img>
+          <div className="postimg"> 
+          <img src={post.postimage} class="card-img-top postImg"></img>
+          </div>
             {showActions ? (
-              <span>
+              
+              <span >
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
@@ -125,9 +130,12 @@ class PostItem extends Component {
                 }
               </span>
             ) : null}
+            <div> 
+            <p class="card-text">{post.text}</p>
+            </div>
           </div>
-        </div>
-      </div>
+        // </div>
+      // </div>
     );
   }
 }

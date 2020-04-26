@@ -21,7 +21,36 @@ body,
   background-size: cover;
   
 }
+.profileImg{
+  width:50px;
+  height:50px;
+}
+.postImg{
+  width: 100%;
+  min-height: 100%;
+  
+}
+// .postimg{
+//   width: 645px;
+//   height: 445px;
+//   overflow: hidden;
+//   // margin-left: 15%;
+//   margin-bottom: 1%;
+//   margin-top: -1%;
+// }
+.posting{
+  height:50% !important;
+}
+.name{
+  margin-top: -6%;
+  margin-left: 5vw;
+  
+}
 
+.cardwidth{
+  // height:545px;
+  
+}
 .create-profile, .feed{
     width: 100vw;
     height: auto;
