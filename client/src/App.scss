@@ -41,26 +41,26 @@ body,
     p{
       size: 10px;
     }
-}
-.col-md-12{
-  display: flex;
-  flex-direction: column;
-}
-.card-header{
-  background-color: #cf8f17a2 !important;
-}
-.card-info{
-  display: flex;
-  width: 40%;
-  position: relative;
-  //align-items: center ;
-  float: right;
-}
-.card{
-  //display: flex;
-  width: 40%;
-  // position: absolute;
-}
+ }
+// .col-md-12{
+//   display: flex;
+//   flex-direction: column;
+// }
+// .card-header{
+//   background-color: #cf8f17a2 !important;
+// }
+// .card-info{
+//   display: flex;
+//   width: 40%;
+//   position: relative;
+//   //align-items: center ;
+//   float: right;
+// }
+// .card{
+//   //display: flex;
+//   width: 40%;
+//   // position: absolute;
+// }
 .form-group{
   color: rgb(236, 210, 171);
 }
