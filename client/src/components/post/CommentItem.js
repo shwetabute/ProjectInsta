@@ -9,16 +9,16 @@ class CommentItem extends Component {
   }
 
   render() {
-    const { comment, postId, auth,profile } = this.props;
+    const { comment, postId, auth } = this.props;
 
     return (
-      <div className=" card card-body mb-3">
+      <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <a href="profile.html">
               <img
                 className="rounded-circle d-none d-md-block"
-                src={profile.profilePic?profile.profilePic:comment.avatar}
+                src={comment.avatar}
                 alt=""
               />
             </a>

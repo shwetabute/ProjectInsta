@@ -13,9 +13,9 @@ class ProfileAbout extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-info insta_color" >{firstName}'s Bio</h3>
+            <h4 className="text-center text-info insta_color" style={{textTransform: "capitalize"}} >{firstName}'s Bio</h4>
             <hr />
-            <p className="lead">
+            <p className="lead profileBio" style={{textTransform: "capitalize"}}>
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a bio</span>
               ) : (
