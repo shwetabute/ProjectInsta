@@ -5,6 +5,7 @@ import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
+import ProfileHeader from '../profile/ProfileHeader';
 
 class Posts extends Component {
   componentDidMount() {
@@ -28,6 +29,8 @@ class Posts extends Component {
             <div className="col-md-12">
               <PostForm />
               {postContent}
+              {/* <ProfileHeader /> */}
+              
             </div>
           </div>
         </div>

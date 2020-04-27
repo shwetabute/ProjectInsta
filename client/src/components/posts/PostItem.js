@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+
 import { deletePost, addLike, removeLike, savePost, unsavePost } from '../../actions/postActions';
 
 class PostItem extends Component {
@@ -64,78 +65,87 @@ class PostItem extends Component {
             </Link>
             <p className="text-left name">{post.name}</p>
             
-            
-            
+            <div className="float-right">
+              {post.user === auth.user.id ? (
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="btn1 btn-light mr-1 float-left delete"
+                   >  <i className="fas fa-times float-left"  /> 
+                  </button>
+                  
+                ) : null}
+                </div>
+
               
           </div>
+          <hr />
           <div className="postimg"> 
           <img src={post.postimage} class="card-img-top postImg"></img>
           </div>
+          
             {showActions ? (
               
               <span >
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-left"
                 >
                   <i
-                    className={classnames("fas fa-thumbs-up", {
+                    className={classnames("fas fa-thumbs-up float-left", {
                       "text-info": this.findUserLike(post.likes),
                     })}
                   />
-                  <span className="badge badge-light">{post.likes.length}</span>
+                  <span className="badge badge-light float-left" style={{backgroundColor:'transparent'}}>{post.likes.length}</span>
                 </button>
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-left"
                 >
-                  <i className="text-secondary fas fa-thumbs-down" />
+                  <i className="text-secondary fas fa-thumbs-down float-left" />
                 </button>
 
 
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Comments
+                <Link to={`/post/${post._id}`} className="btn1 btn-info mr-1 float-left">
+                <i class="far fa-comment float-left"></i>
                 </Link>
 
 
-                {post.user === auth.user.id ? (
-                  <button
-                    onClick={this.onDeleteClick.bind(this, post._id)}
-                    type="button"
-                    className="btn btn-danger mr-1"
-                  >
-                    <i className="fas fa-times" />
-                  </button>
-                ) : null}
-
+                
 
                 {/* savePost */}
-                {this.findSavePost(post.savePost) ? (
+            {this.findSavePost(post.savePost) ? (
                   <button
                   onClick={this.unSavePostClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-right"
                   >
-                  <i className="fas fa-bookmark saveButton"/>
+                  <i className="fas fa-bookmark saveButton float-right"/>
                   </button>  )    
                   :( <button
                       onClick={this.savePostClick.bind(this, post._id)}
                       type="button"
-                      className="btn btn-light mr-1"
+                      className="btn1 btn-light mr-1 float-right "
                     >
-                    <i className='far fa-bookmark'/>
+                    <i className='far fa-bookmark float-right'/>
                     </button> )
                 }
+            
               </span>
             ) : null}
+            <hr />
             <div> 
-            <p class="card-text">{post.text}</p>
+            <p className="card-text float-left">{post.text}</p>
             </div>
+            <br/>
+            
+            
           </div>
         // </div>
       // </div>
+      
     );
   }
 }

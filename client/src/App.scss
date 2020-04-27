@@ -24,34 +24,42 @@ body,
 .profileImg{
   width:50px;
   height:50px;
+  margin-bottom: -20px;
 }
 .postImg{
   width: 100%;
   min-height: 100%;
   
 }
-// .postimg{
-//   width: 645px;
-//   height: 445px;
-//   overflow: hidden;
-//   // margin-left: 15%;
-//   margin-bottom: 1%;
-//   margin-top: -1%;
-// }
+.postimg{
+  width: 60%;
+  height: 60%;
+  overflow: hidden;
+  margin-left: 20%;
+  margin-bottom: 1%;
+  margin-top: -1%;
+}
 .posting{
-  height:50% !important;
+  // height:10%!important;
+  margin-bottom: -10px;
 }
 .name{
   margin-top: -6%;
   margin-left: 5vw;
-  
+  margin-bottom: -20px;
 }
-
+.delete{
+  margin-bottom: -40px;
+  font-size: 20px !important;
+  // &:hover {
+  //   background-color:transparent !important ;
+  // }
+}
 .cardwidth{
   // height:545px;
   
 }
-.create-profile, .feed{
+.create-profile, .feed, .profile{
     width: 100vw;
     height: auto;
     display: flex;
@@ -71,13 +79,22 @@ body,
       size: 10px;
     }
  }
+ .profileCard{
+   background-color:  #b47c22b4 !important;
+ }
 // .col-md-12{
 //   display: flex;
 //   flex-direction: column;
 // }
-// .card-header{
-//   background-color: #cf8f17a2 !important;
-// }
+.card-header{
+  background-color: #cf8f17a2 !important;
+}
+.createpost{
+  font-size: 15px;
+  padding-bottom: 0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+}
 // .card-info{
 //   display: flex;
 //   width: 40%;
@@ -111,6 +128,7 @@ body,
 .insta_color{
 	color: #b47c22 !important;
 }
+
 
 .App {
   text-align: center;
@@ -247,9 +265,31 @@ body,
     outline: none;
   }
 }
+.btn1 {
+  font-size: 20px;
+  padding-top: 2px;
+  padding-bottom: 10px;
+  padding-left: -2px;
+  border: 0;
+  background-color: transparent;
+  color: rgb(2, 2, 2);
+  border-radius: 3px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #ac691d93 ;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.badge{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
 
 
 //Save Post Button
-.saveButton {
-  color: white
-}
+// .saveButton {
+//   color: white
+// }

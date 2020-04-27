@@ -30,9 +30,9 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
+        <div className="col-md-12">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-12">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
               </Link>

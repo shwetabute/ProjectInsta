@@ -13,7 +13,8 @@ class ProfileAbout extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-info">{firstName}'s Bio</h3>
+            <h3 className="text-center text-info insta_color" >{firstName}'s Bio</h3>
+            <hr />
             <p className="lead">
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a bio</span>
@@ -21,7 +22,7 @@ class ProfileAbout extends Component {
                 <span>{profile.bio}</span>
               )}
             </p>
-            <hr />
+            
             
           </div>
         </div>
