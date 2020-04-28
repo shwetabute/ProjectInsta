@@ -3,7 +3,7 @@ import axios from "axios";
 // import classnames from "classnames";
 import "./style.scss";
 import TextFieldGroup from "../common/TextFieldGroup";
-import loginImg from '../../login.svg';
+import loginImg from '../../rest.svg';
 import { Link } from 'react-router-dom';
 
 

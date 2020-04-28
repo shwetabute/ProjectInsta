@@ -8,27 +8,28 @@ class ProfileHeader extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
+          <div className="card card-body bg-info text-white mb-3 profileCard">
             <div className="row">
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src= {profile.user.avatar}
-                 
+                  src= {profile.profilePic? profile.profilePic : profile.user.avatar}
+                  height="150px" width="150px"
                   alt=""
                 />
               </div>
             </div>
             <div className="text-center">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
-              <p className="lead text-center">
+              <h1 className="display-4 text-center "style={{textTransform: "capitalize"}}>{profile.user.name}</h1>
+              <p className="lead text-center" style={{textTransform: "capitalize"}}>
                 {profile.gender}{' '}
+                
 
                 {/* {isEmpty(profile.company) ? null : (
                   <span>at {profile.company}</span>
                 )} */}
               </p>
-              {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+              {isEmpty(profile.location) ? null : <p style={{textTransform: "capitalize"}}>{profile.location}</p>}
               <p>
                 {isEmpty(profile.website) ? null : (
                   <a

@@ -84,11 +84,15 @@ class CreateProfile extends Component {
       if (picture) {
         try {
           const profilePic = await this.serializeAsBase64(picture);
+          if (profilePic .length > 25 * 1024) {
+            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            return;
+          }
           this.setState({
             profilePic: profilePic,
           });
         } catch (err) {
-         this.setState({errors :err})
+         this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
         }
       }
     }
@@ -102,7 +106,7 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
+              <h4 className="display-4 text-center">Create Your Profile</h4>
               <p className="lead text-center">
                 Let's get some information to make your profile stand out
               </p>

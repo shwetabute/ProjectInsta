@@ -15,15 +15,15 @@ module.exports = function validatePostInput(data) {
   //   errors.text = "Text field is required";
   // }
 
-  if (!Validator.isURL(data.postimage)) {
-    errors.postimage = "Not a valid URL";
-  }
   if (Validator.isEmpty(data.postimage)) {
     errors.postimage = "Please provide a image for the post ";
   }
+ 
+  
+ 
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };

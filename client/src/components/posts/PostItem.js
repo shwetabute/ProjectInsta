@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+
 import { deletePost, addLike, removeLike, savePost, unsavePost } from '../../actions/postActions';
 
 class PostItem extends Component {
@@ -28,7 +29,7 @@ class PostItem extends Component {
 
   findUserLike(likes) {
     const { auth } = this.props;
-    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+    if (likes.filter((like) => like.user === auth.user.id).length > 0) {
       return true;
     } else {
       return false;
@@ -49,90 +50,109 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions, profile } = this.props;
 
+    console.log(JSON.stringify(profile.hand));
     return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-2">
-            <Link to="/profile">
+       
+      <div className="card mb-3 col-md-7">
+        {/* <div className="col-md-2"> */}
+          <div class="card-body">
+         
+          <Link to={`/profile/${profile.handle}`}>
               <img
-                className="rounded-circle d-none d-md-block"
-                src={post.avatar}
+                className="rounded-circle d-none d-sm-block profileImg"
+                src={profile.profilePic ? profile.profilePic : post.avatar}
                 alt=""
               />
             </Link>
-            <br />
-            <p className="text-center">{post.name}</p>
+            <p className="text-left name">{post.name}</p>
+            
+            <div className="float-right">
+              {post.user === auth.user.id ? (
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="btn1 btn-light mr-1 float-left delete"
+                   >  <i className="fas fa-times float-left"  /> 
+                  </button>
+                  
+                ) : null}
+                </div>
+
+              
           </div>
-          <div className="col-md-10">
-            <p className="lead">{post.text}</p>
-            <img src={post.postimage}></img>
+          <hr />
+          <div className="postimg"> 
+          <img src={post.postimage} class="card-img-top postImg"></img>
+          </div>
+          
             {showActions ? (
-              <span>
+              
+              <span >
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-left"
                 >
                   <i
-                    className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
+                    className={classnames("fas fa-thumbs-up float-left", {
+                      "text-info": this.findUserLike(post.likes),
                     })}
                   />
-                  <span className="badge badge-light">{post.likes.length}</span>
+                  <span className="badge badge-light float-left" style={{backgroundColor:'transparent'}}>{post.likes.length}</span>
                 </button>
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-left"
                 >
-                  <i className="text-secondary fas fa-thumbs-down" />
+                  <i className="text-secondary fas fa-thumbs-down float-left" />
                 </button>
 
 
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Comments
+                <Link to={`/post/${post._id}`} className="btn1 btn-info mr-1 float-left">
+                <i class="far fa-comment float-left"></i>
                 </Link>
 
 
-                {post.user === auth.user.id ? (
-                  <button
-                    onClick={this.onDeleteClick.bind(this, post._id)}
-                    type="button"
-                    className="btn btn-danger mr-1"
-                  >
-                    <i className="fas fa-times" />
-                  </button>
-                ) : null}
-
+                
 
                 {/* savePost */}
-                {this.findSavePost(post.savePost) ? (
+            {this.findSavePost(post.savePost) ? (
                   <button
                   onClick={this.unSavePostClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn1 btn-light mr-1 float-right"
                   >
-                  <i className="fas fa-bookmark saveButton"/>
+                  <i className="fas fa-bookmark saveButton float-right"/>
                   </button>  )    
                   :( <button
                       onClick={this.savePostClick.bind(this, post._id)}
                       type="button"
-                      className="btn btn-light mr-1"
+                      className="btn1 btn-light mr-1 float-right "
                     >
-                    <i className='far fa-bookmark'/>
+                    <i className='far fa-bookmark float-right'/>
                     </button> )
                 }
+            
               </span>
             ) : null}
+            <hr />
+            <div> 
+            <p className="card-text float-left">{post.text}</p>
+            </div>
+            <br/>
+            
+            
           </div>
-        </div>
-      </div>
+        // </div>
+      // </div>
+      
     );
   }
 }
 
 PostItem.defaultProps = {
-  showActions: true
+  showActions: true,
 };
 
 PostItem.propTypes = {
@@ -142,11 +162,13 @@ PostItem.propTypes = {
   savePost: PropTypes.func.isRequired,
   unsavePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost })(
