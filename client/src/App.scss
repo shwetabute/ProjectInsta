@@ -66,7 +66,7 @@ body,
   // height:545px;
   
 }
-.create-profile, .feed, .profile, .comment{
+.create-profile, .feed, .profile, .comment, .profiles{
     width: 100vw;
     height: auto;
     display: flex;
@@ -117,7 +117,7 @@ body,
 .form-group{
   color: rgb(236, 210, 171);
 }
-.fas, .fad{
+.fas, .fad, .far{
   color: #cf8f17a2;
 
 }
@@ -279,7 +279,7 @@ body,
   padding-left: -2px;
   border: 0;
   background-color: transparent;
-  color: rgb(2, 2, 2);
+  color: rgb(2, 2, 2) ;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
   cursor: pointer;

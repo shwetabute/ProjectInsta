@@ -50,12 +50,13 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions, profile } = this.props;
 
-    console.log(JSON.stringify(profile));
+    console.log(JSON.stringify(profile.hand));
     return (
+       
       <div className="card mb-3 col-md-7">
         {/* <div className="col-md-2"> */}
           <div class="card-body">
-          
+         
           <Link to={`/profile/${profile.handle}`}>
               <img
                 className="rounded-circle d-none d-sm-block profileImg"
