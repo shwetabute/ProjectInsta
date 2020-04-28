@@ -4,7 +4,7 @@ const isEmpty = require("./is-empty");
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
-  console.log(JSON.stringify(data));
+ 
 
   data.handle = !isEmpty(data.handle) ? data.handle : "";
   // data.profilepic = !isEmpty(data.profilepic) ? data.profilepic : '';

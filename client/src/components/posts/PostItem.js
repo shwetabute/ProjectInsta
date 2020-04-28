@@ -30,24 +30,41 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions, profile } = this.props;
 
-    console.log(JSON.stringify(profile));
+    console.log("this is post info", JSON.stringify(post));
+    // console.log(
+    //   "this is profile info",
+    //   JSON.stringify(profile.profile.user._id)
+    // );
+    // console.log("check", post.user === profile.profile.user._id);
     return (
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <Link to="/profile">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={profile.profilePic ? profile.profilePic : post.avatar}
-                alt=""
-              />
+             
+              {post.user == profile.profile.user._id ? (
+                <img
+                  className="rounded-circle d-none d-md-block"
+                  src={profile?.profile?.profilePic}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="rounded-circle d-none d-md-block"
+                  src={post.avatar}
+                  alt=""
+                />
+              )}
             </Link>
             <br />
             <p className="text-center">{post.name}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
-            <div> <img src={post.postimage} height="400px" width="250px" /></div>
+            <div>
+              {" "}
+              <img src={post.postimage} height="300px" width="300px" />
+            </div>
             {showActions ? (
               <span>
                 <button
@@ -102,6 +119,7 @@ PostItem.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
+// console.log(JSON.stringify().post)
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

@@ -37,7 +37,7 @@ router.post(
 
     if (req.body.gender) profileFields.gender = req.body.gender;
     if (req.body.profilePic) profileFields.profilePic = req.body.profilePic;
-
+   
     //Locate the user profile
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
