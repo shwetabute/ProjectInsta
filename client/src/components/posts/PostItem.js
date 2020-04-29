@@ -54,20 +54,26 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions, profile } = this.props;
 
-    console.log(JSON.stringify(profile.hand));
+    //console.log("this is post info", JSON.stringify(post.profilePic));
+    // console.log(
+    //   "this is profile info",
+    //   JSON.stringify(profile.profile.user._id)
+    // );
+    // console.log("check", post.user === profile.profile.user._id);
     return (
-       
       <div className="card mb-3 col-md-7">
-        {/* <div className="col-md-2"> */}
-          <div class="card-body">
-         
-          <Link to={`/profile/${profile.handle}`}>
-              <img
-                className="rounded-circle d-none d-sm-block profileImg"
-                src={profile.profilePic ? profile.profilePic : post.avatar}
-                alt=""
-              />
-            </Link>
+      {/* <div className="col-md-2"> */}
+        <div class="card-body">
+            <Link to={`/profile/${profile.handle}`}>
+                        
+                <img
+                  className="rounded-circle d-none d-md-block"
+                  src={post.profilePic?post.profilePic:post.avatar}
+                  alt=""
+                />
+             
+           
+                  </Link>
             <p className="text-left name">{post.name}</p>
             
             <div className="float-right">
@@ -174,6 +180,7 @@ PostItem.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
+// console.log(JSON.stringify().post)
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

@@ -7,9 +7,13 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref:"profile"
+  },
   text: {
     type: String,
-    required: false
+    required: false 
   },
   postimage: {
     type: String,
@@ -20,6 +24,9 @@ const PostSchema = new Schema({
   },
   avatar: {
     type: String
+  },
+  profilePic: {
+    type:String
   },
   likes: [
     {

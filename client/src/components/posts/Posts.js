@@ -19,6 +19,7 @@ class Posts extends Component {
     //const { profile } = this.props.profile;
     
     let postContent;
+    
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {

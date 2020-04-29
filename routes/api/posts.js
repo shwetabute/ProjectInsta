@@ -25,15 +25,19 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
-
+    //console.log("printing",JSON.stringify(req.body.profile))
+   // console.log("printing", JSON.stringify(req.profile.id))
     const newPost = new Post({
       postimage: req.body.postimage,
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
-      user: req.user.id
+      user: req.user.id,
+     // profile:req.profile.id,
+      profilePic:req.body.profilePic
+      // req.body.profilePic? profilePic = req.body.profilePic 
     });
-
+    //console.log("profilePic" + req.body.profilePic);
     newPost.save().then(post => res.json(post));
   }
 );
@@ -166,7 +170,9 @@ router.post(
           text: req.body.text,
           name: req.body.name,
           avatar: req.body.avatar,
-          user: req.user.id
+          user: req.user.id,
+          //profile:req.profile.id,
+          profilePic:req.body.profilePic
         };
 
         // Add to comments array

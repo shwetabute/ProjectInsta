@@ -4,7 +4,7 @@ import isEmpty from '../../validation/is-empty';
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
-
+  console.log("This is from profile header ",JSON.stringify(profile))
     return (
       <div className="row">
         <div className="col-md-12">
@@ -23,14 +23,21 @@ class ProfileHeader extends Component {
               <h1 className="display-4 text-center "style={{textTransform: "capitalize"}}>{profile.user.name}</h1>
               <p className="lead text-center" style={{textTransform: "capitalize"}}>
                 {profile.gender}{' '}
-                
-
-                {/* {isEmpty(profile.company) ? null : (
-                  <span>at {profile.company}</span>
-                )} */}
+             
               </p>
-              {isEmpty(profile.location) ? null : <p style={{textTransform: "capitalize"}}>{profile.location}</p>}
-              <p>
+              <i class="fas fa-map-marker-alt" style={{color:"white"}}></i> {isEmpty(profile.location) ? null : <p style={{textTransform: "capitalize"}}>{profile.location}</p>}
+              
+              <div className="col-4 col-md-3 m-auto">
+                <div className="float-left" >
+                  
+                  <p> <h4>10</h4> Followers</p>
+                </div>
+                <div className="float-right" >
+                  
+                  <p> <h4>20</h4> Following</p>
+                </div>
+              </div>
+              {/* <p>
                 {isEmpty(profile.website) ? null : (
                   <a
                     className="text-white p-2"
@@ -41,7 +48,7 @@ class ProfileHeader extends Component {
                   </a>
                 )}
 
-                              </p>
+                              </p> */}
             </div>
           </div>
         </div>

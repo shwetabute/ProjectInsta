@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addPost } from "../../actions/postActions";
+import { getCurrentProfile } from '../../actions/profileActions';
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class PostForm extends Component {
@@ -12,12 +13,15 @@ class PostForm extends Component {
       text: "",
       postimage: "",
       errors: {},
+      
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
@@ -28,16 +32,21 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
+    const { profilePic } = this.props.profile;
 
+    // console.log("Props.profile info ",JSON.stringify(this.props.profile.profile.profilePic));
+    // console.log(JSON.stringify(this.props));
     const newPost = {
       text: this.state.text,
       postimage: this.state.postimage,
       name: user.name,
       avatar: user.avatar,
+      profilePic: this.props.profile.profile.profilePic,
     };
 
     this.props.addPost(newPost);
     this.setState({ text: "" });
+
     this.setState({ postimage: "" });
   }
 
@@ -76,14 +85,16 @@ class PostForm extends Component {
         try {
           const postimage = await this.serializeAsBase64(picture);
           if (postimage.length > 25 * 1024) {
-            this.setState({ errors: { "postimage": "Please provide an image within 25 kb" }});
+            this.setState({
+              errors: { postimage: "Please provide an image within 25 kb" },
+            });
             return;
           }
           this.setState({
             postimage: postimage,
           });
         } catch (err) {
-          this.setState({ errors: { "postimage": "Failed to parse image" }});
+          this.setState({ errors: { postimage: "Failed to parse image" } });
         }
       }
     }
@@ -120,9 +131,8 @@ class PostForm extends Component {
                   name="postimage"
                   onChange={this.UploadImage}
                   error={errors.postimage}
-                  />
-
-                </div>
+                />
+              </div>
               <button type="submit" className="btn btn-dark">
                 Submit
               </button>
@@ -138,11 +148,14 @@ PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile:PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps, { addPost })(PostForm);
+export default connect(mapStateToProps, { addPost, getCurrentProfile })(PostForm);

@@ -7,7 +7,7 @@ class ProfileAbout extends Component {
     const { profile } = this.props;
 
     // Get first name
-    const firstName = profile.user.name.trim().split(' ')[0];
+    const firstName = profile.user?.name.trim().split(' ')[0];
 
        return (
       <div className="row">
@@ -15,7 +15,7 @@ class ProfileAbout extends Component {
           <div className="card card-body bg-light mb-3">
             <h4 className="text-center text-info insta_color" style={{textTransform: "capitalize"}} >{firstName}'s Bio</h4>
             <hr />
-            <p className="lead profileBio" style={{textTransform: "capitalize"}}>
+            <p className="lead profileBio" >
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a bio</span>
               ) : (

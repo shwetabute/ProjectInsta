@@ -9,7 +9,8 @@ class CommentItem extends Component {
   }
 
   render() {
-    const { comment, postId, auth } = this.props;
+    const { comment, postId, auth, post } = this.props;
+   
 
     return (
       <div className="card card-body mb-3">
@@ -18,7 +19,7 @@ class CommentItem extends Component {
             <a href="profile.html">
               <img
                 className="rounded-circle d-none d-md-block"
-                src={comment.avatar}
+                src={comment.profilePic?comment.profilePic:comment.avatar}
                 alt=""
               />
             </a>
@@ -47,7 +48,8 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  post:PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
