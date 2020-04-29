@@ -30,7 +30,7 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions, profile } = this.props;
 
-    console.log("this is post info", JSON.stringify(post));
+    console.log("this is post info", JSON.stringify(post.profilePic));
     // console.log(
     //   "this is profile info",
     //   JSON.stringify(profile.profile.user._id)
@@ -42,19 +42,13 @@ class PostItem extends Component {
           <div className="col-md-2">
             <Link to="/profile">
              
-              {post.user == profile.profile.user._id ? (
+              
                 <img
                   className="rounded-circle d-none d-md-block"
-                  src={profile?.profile?.profilePic}
+                  src={post.profilePic?post.profilePic:post.avatar}
                   alt=""
                 />
-              ) : (
-                <img
-                  className="rounded-circle d-none d-md-block"
-                  src={post.avatar}
-                  alt=""
-                />
-              )}
+             
             </Link>
             <br />
             <p className="text-center">{post.name}</p>

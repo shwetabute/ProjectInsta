@@ -38,7 +38,7 @@ router.post(
       profilePic:req.body.profilePic
       // req.body.profilePic? profilePic = req.body.profilePic 
     });
-    console.log("profilePic" + req.body.profilePic);
+    //console.log("profilePic" + req.body.profilePic);
     newPost.save().then(post => res.json(post));
   }
 );
