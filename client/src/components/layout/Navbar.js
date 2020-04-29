@@ -14,7 +14,8 @@ class Navbar extends Component {
   render() {
     //deconstruction
     const { isAuthenticated, user } = this.props.auth;
-
+    const { profile } = this.props.profile;
+    console.log("This is from Navbar",JSON.stringify(profile?.profilePic))
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -55,13 +56,13 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            <img
+            {profile && (<img
               className="rounded-circle"
-              src={user.avatar}
+              src={profile.profilePic?profile.profilePic:user.avatar}
               alt={user.name}
               style={{ width: "25px", marginRight: "5px" }}
               title="you must have a gravatar connected to your email to display an image "
-            />
+            />)}
             Logout
           </a>
         </li>
@@ -95,12 +96,14 @@ class Navbar extends Component {
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
   //errors: PropTypes.object.isRequired,
 };
  
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
+  profile: state.profile
 });
  
 export default connect(mapStateToProps, { logoutUser })(Navbar);

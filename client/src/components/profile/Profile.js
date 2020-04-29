@@ -23,7 +23,7 @@ class Profile extends Component {
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
-
+    // console.log("This is from profile.js",JSON.stringify(profile))
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
