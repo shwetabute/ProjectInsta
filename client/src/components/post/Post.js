@@ -15,7 +15,7 @@ class Post extends Component {
 
   render() {
     const { post, loading } = this.props.post;
-    console.log("a single post id = ", JSON.stringify(post));
+   
     let postContent;
 
     if (post === null || loading || Object.keys(post).length === 0) {

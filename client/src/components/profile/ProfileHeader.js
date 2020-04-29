@@ -4,7 +4,7 @@ import isEmpty from '../../validation/is-empty';
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
-
+  console.log("This is from profile header ",JSON.stringify(profile))
     return (
       <div className="row">
         <div className="col-md-12">
@@ -13,14 +13,14 @@ class ProfileHeader extends Component {
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src= {profile.profilePic? profile.profilePic:profile.user.avatar}
+                  src= {profile?.profilePic? profile?.profilePic:profile.user?.avatar}
                   height="150px" width="150px"
                   alt=""
                 />
               </div>
             </div>
             <div className="text-center">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
+              <h1 className="display-4 text-center">{profile.user?.name}</h1>
               <p className="lead text-center">
                 {profile.gender}{' '}
                 
