@@ -7,16 +7,25 @@ import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 import { getCurrentProfile } from '../../actions/profileActions';
 import ProfileHeader from '../profile/ProfileHeader';
+import { getProfileByHandle } from '../../actions/profileActions';
 
 class Posts extends Component {
   componentDidMount() {
     this.props.getPosts();
     // this.props.getCurrentProfile();
+    if (this.props.match.params.handle) {
+      this.props.getProfileByHandle(this.props.match.params.handle);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push('/not-found');
+    }
   }
 
   render() {
-    const { posts, loading, profile } = this.props.post;
-    //const { profile } = this.props.profile;
+    const { posts, loading } = this.props.post;
+    const { profile } = this.props.profile;
     
     let postContent;
     
@@ -31,9 +40,10 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
+            <ProfileHeader profile={profile} />
               <PostForm />
               {postContent}
-              {/* <ProfileHeader profile={profile}/> */}
+            
               
             </div>
           </div>
@@ -45,11 +55,14 @@ class Posts extends Component {
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  getProfileByHandle: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts,getProfileByHandle })(Posts);
