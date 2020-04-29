@@ -21,22 +21,24 @@ class Post extends Component {
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
+      console.log(post.comments);
       postContent = (
-        <div>
-          <PostItem post={post} showActions={false} />
+        <div className="col-md-12">
           <CommentForm postId={post._id} />
+          <PostItem post={post} showActions={false} />
           <CommentFeed postId={post._id} comments={post.comments} />
         </div>
       );
     }
 
     return (
-      <div className="post">
-        <div className="container">
-          <div className="row">
+      <div className="post comment ">
+        <div className="container ">
+          <div className="row ">
             <div className="col-md-12">
-              <Link to="/feed" className="btn btn-light mb-3">
-                Back To Feed
+              
+              <Link to="/feed" className="btn btn-light mb-3 d-flex justify-content-around">
+                Back To HomePage
               </Link>
               {postContent}
             </div>

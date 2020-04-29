@@ -195,7 +195,6 @@ router.post(
         });
 
         profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-
       })
       
       .catch(err => res.status(404).json({ profilenotfound: 'No profile found' }));

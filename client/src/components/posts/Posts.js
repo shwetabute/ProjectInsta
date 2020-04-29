@@ -5,14 +5,19 @@ import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
+import { getCurrentProfile } from '../../actions/profileActions';
+import ProfileHeader from '../profile/ProfileHeader';
 
 class Posts extends Component {
   componentDidMount() {
     this.props.getPosts();
+    // this.props.getCurrentProfile();
   }
 
   render() {
-    const { posts, loading } = this.props.post;
+    const { posts, loading, profile } = this.props.post;
+    //const { profile } = this.props.profile;
+    
     let postContent;
     
     if (posts === null || loading) {
@@ -28,6 +33,8 @@ class Posts extends Component {
             <div className="col-md-12">
               <PostForm />
               {postContent}
+              {/* <ProfileHeader profile={profile}/> */}
+              
             </div>
           </div>
         </div>

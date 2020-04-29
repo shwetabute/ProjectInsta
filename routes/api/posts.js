@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const mongoose = require("mongoose");
 const passport = require("passport");
 
@@ -100,8 +99,7 @@ router.post(
       Post.findById(req.params.id)
         .then(post => {
           if (
-            post.likes.filter(like => like.user.toString() === req.user.id)
-              .length > 0
+            post.likes.filter(like => like.user.toString() === req.user.id).length > 0
           ) {
             return res
               .status(400)
@@ -216,18 +214,19 @@ router.delete(
         post.comments.splice(removeIndex, 1);
 
         post.save().then(post => res.json(post));
-      })
+    })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
-  }
-);
+});
 
-// @route   SAVE api/posts/savepost/:postId
+
+// @route   POST api/posts/savepost/:postId
 // @desc    Save post
 // @access  Private
 
 router.post("/savepost/:postId",
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
+      // Save PostId in Profile.savePost array 
       Profile.findOne({ user: req.user.id }).then(profile => {
           if (
             profile.savePost.filter(savePost => savePost.postId.toString() === req.params.postId)
@@ -236,17 +235,30 @@ router.post("/savepost/:postId",
             return res
               .status(400)
               .json({ alreadySaved : 'This post is already saved' });
-            }
+          }
 
           // Add post id to savePost array in Profile Collection
           profile.savePost.unshift({ postId : req.params.postId });
+          
+        // Code to add UserId in Post.savePost array 
+        Post.findById(req.params.postId)
+        .then(post => { 
+          
+          // Add user id to savePost array
+          post.savePost.unshift({ user: req.user.id });
+          post.save({"_id" : post.id})
+        })
 
-          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    })
+        profile.save({"_id" : profile.id}).then(profile => res.json(profile));
+      })
     .catch(err => res.status(404).json({ postnotfound: "No profile exists" }));
 });
 
 
+
+// @route   POST api/posts/unsavepost/:postId
+// @desc    unsave post
+// @access  Private
 router.post('/unsavepost/:postId',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -258,7 +270,7 @@ router.post('/unsavepost/:postId',
             return res
               .status(400)
               .json({ notSaved : 'This post is not yet saved' });
-            }
+          }
 
           // Remove post id from savePost array
           // Get remove index
@@ -268,8 +280,23 @@ router.post('/unsavepost/:postId',
 
           // Splice out of array
           profile.savePost.splice(removeIndex, 1);
-           profile.save({"_id" : profile.id}).then(profile => res.json(profile));
-    
+
+          
+          // Unsave the user_Id from Post.savePost array
+          Post.findById(req.params.postId)
+          .then(post => {
+  
+            // Get remove index
+            const removeIndex = post.savePost.map(item => item.user.toString()).indexOf(req.user.id);
+  
+            // Splice User Id out of Post.savePost array
+            post.savePost.splice(removeIndex, 1);
+  
+            // Save
+            post.save({"_id" : post.id})
+          })
+
+          profile.save({"_id" : profile.id}).then(profile => res.json(profile));
     });
 });
 
