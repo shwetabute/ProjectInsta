@@ -63,7 +63,7 @@ class PostItem extends Component {
             <Link to={`/profile/${profile.handle}`}>
                         
                 <img
-                  className="rounded-circle d-none d-md-block"
+                  className="rounded-circle d-none d-sm-block profileImg"
                   src={post.profilePic?post.profilePic:post.avatar}
                   alt=""
                 />
