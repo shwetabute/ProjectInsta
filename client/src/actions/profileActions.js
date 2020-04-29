@@ -109,3 +109,29 @@ export const clearCurrentProfile = () => {
     type: CLEAR_CURRENT_PROFILE
   };
 };
+
+//Follow user
+// export const savePost = id => dispatch => {
+//   axios
+//     .post(`/api/profile/follow/${user}`)
+//     .then(res => dispatch(getPosts()))
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// };
+
+//Unfollow user
+// export const savePost = id => dispatch => {
+//   axios
+//     .post(`/api/profile/unfollow/${user}`)
+//     .then(res => dispatch(getPosts()))
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// };

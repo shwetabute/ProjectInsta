@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { deletePost, addLike, removeLike, savePost, unsavePost } from '../../actions/postActions';
+import { deletePost, addLike, removeLike, savePost, unsavePost, followUser } from '../../actions/postActions';
 
 class PostItem extends Component {
   onDeleteClick(id) {
     this.props.deletePost(id);
+  }
+
+  onFollowClick(user) {
+    this.props.followUser(user);
   }
 
   onLikeClick(id) {
@@ -74,11 +78,15 @@ class PostItem extends Component {
                     className="btn1 btn-light mr-1 float-left delete"
                    >  <i className="fas fa-times float-left"  /> 
                   </button>
-                  
-                ) : null}
-                </div>
-
-              
+                ) : 
+                  <button
+                    onClick={this.onFollowClick.bind(this, post.user)}
+                    type="button"
+                    className="btn2 btn-light mr-1 float-right"
+                    > follow
+                  </button>
+              }
+            </div>  
           </div>
           <hr />
           <div className="postimg"> 
@@ -161,6 +169,7 @@ PostItem.propTypes = {
   removeLike: PropTypes.func.isRequired,
   savePost: PropTypes.func.isRequired,
   unsavePost: PropTypes.func.isRequired,
+  followUser: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
@@ -171,6 +180,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost })(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost, followUser })(
   PostItem
 );
