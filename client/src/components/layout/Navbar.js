@@ -15,7 +15,7 @@ class Navbar extends Component {
     //deconstruction
     const { isAuthenticated, user } = this.props.auth;
     const { profile } = this.props.profile;
-    console.log("This is from Navbar",JSON.stringify(profile?.profilePic))
+   
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
               <li className="nav-item">

@@ -6,14 +6,14 @@ import isEmpty from '../../validation/is-empty';
 class ProfileItem extends Component {
   render() {
     const { profile } = this.props;
-
+    // console.log("This is from ProfileItem=",JSON.stringify(profile.profilePic))
     return (
       <div className="card card-body bg-light mb-3 ">
         <div className="row">
           <div className="col-md-12" >
-            
+           
           <div className="float-left">
-            <img src={ profile.user?.avatar}
+            <img src={profile.profilePic?profile.profilePic: profile.user?.avatar }
               alt="" className="rounded-circle float-left" style={{height:"7vw", marginBottom:"-20px", marginRight:"15px"}} 
               />
               </div>
@@ -30,14 +30,7 @@ class ProfileItem extends Component {
           <div className= "col-md-12">
           <div className="float-right "  >
             
-            {/* {profile.status}{' '} */} 
-            {/* <p>
-              
-              {isEmpty(profile.company) ? null : (
-                <span>at {profile.company}</span>
-              )}
-            </p> */}
-           
+            
             
             <Link  className="btn btn-info " style={{marginTop:"-100px", paddingLeft:"40px",  paddingRight:"40px"}}>
             <i class="fas fa-user-friends"style={{color:"white"}}></i> Follow      
