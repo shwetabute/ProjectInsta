@@ -15,7 +15,8 @@ class Navbar extends Component {
     //deconstruction
     const { isAuthenticated, user } = this.props.auth;
     const { profile } = this.props.profile;
-   
+    console.log("This is user from navabr", JSON.stringify(user?.id));
+    console.log("This is profile from navabr", JSON.stringify(profile?.user._id));
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -56,7 +57,7 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            {profile && (<img
+            {profile&& (user?.id==profile?.user._id) && (<img
               className="rounded-circle"
               src={profile.profilePic?profile.profilePic:user.avatar}
               alt={user.name}
