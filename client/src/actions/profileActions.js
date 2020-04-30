@@ -7,6 +7,7 @@ import {
   GET_ERRORS,
   SET_CURRENT_USER
 } from './types';
+
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
@@ -57,6 +58,7 @@ export const getProfileByHandle = handle => dispatch => {
       })
     );
 };
+
 // Get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
@@ -75,6 +77,7 @@ export const getProfiles = () => dispatch => {
       })
     );
 };
+
 
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
@@ -111,27 +114,28 @@ export const clearCurrentProfile = () => {
 };
 
 //Follow user
-// export const savePost = id => dispatch => {
-//   axios
-//     .post(`/api/profile/follow/${user}`)
-//     .then(res => dispatch(getPosts()))
-//     .catch(err =>
-//       dispatch({
-//         type: GET_ERRORS,
-//         payload: err.response.data
-//       })
-//     );
-// };
+export const followUser = id => dispatch => {
+  axios
+    .post(`/api/profile/follow/${id}`)
+    .then(res => dispatch(getProfiles()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
-//Unfollow user
-// export const savePost = id => dispatch => {
-//   axios
-//     .post(`/api/profile/unfollow/${user}`)
-//     .then(res => dispatch(getPosts()))
-//     .catch(err =>
-//       dispatch({
-//         type: GET_ERRORS,
-//         payload: err.response.data
-//       })
-//     );
-// };
+
+// Unfollow user
+export const unfollowUser = id => dispatch => {
+  axios
+    .post(`/api/profile/unfollow/${id}`)
+    .then(res => dispatch(getProfiles()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};

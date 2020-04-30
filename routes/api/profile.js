@@ -175,7 +175,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Profile.findOne({user: req.params.id}).then(profile => {
+      Profile.findOne({ user: req.params.id }).then(profile => {
         if (
           profile.followers.filter(follower => follower.user.toString() === req.user.id)
             .length > 0

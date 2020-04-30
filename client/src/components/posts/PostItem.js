@@ -11,10 +11,6 @@ class PostItem extends Component {
     this.props.deletePost(id);
   }
 
-  onFollowClick(user) {
-    this.props.followUser(user);
-  }
-
   onLikeClick(id) {
     this.props.addLike(id);
   }
@@ -84,13 +80,7 @@ class PostItem extends Component {
                     className="btn1 btn-light mr-1 float-left delete"
                    >  <i className="fas fa-times float-left"  /> 
                   </button>
-                ) : 
-                  <button
-                    onClick={this.onFollowClick.bind(this, post.user)}
-                    type="button"
-                    className="btn2 btn-light mr-1 float-right"
-                    > follow
-                  </button>
+                ) : null
               }
             </div>  
           </div>
@@ -127,11 +117,8 @@ class PostItem extends Component {
                 <i class="far fa-comment float-left"></i>
                 </Link>
 
-
-                
-
                 {/* savePost */}
-            {this.findSavePost(post.savePost) ? (
+                {this.findSavePost(post.savePost) ? (
                   <button
                   onClick={this.unSavePostClick.bind(this, post._id)}
                   type="button"

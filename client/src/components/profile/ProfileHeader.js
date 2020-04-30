@@ -30,13 +30,14 @@ class ProfileHeader extends Component {
               <div className="col-4 col-md-3 m-auto">
                 <div className="float-left" >
                   
-                  <p> <h4>10</h4> Followers</p>
+                  <p> <h4>{ profile.followers.length }</h4> Followers </p>
                 </div>
                 <div className="float-right" >
                   
-                  <p> <h4>20</h4> Following</p>
+                  <p> <h4>{ profile.following.length }</h4> Following </p>
                 </div>
               </div>
+              
               {/* <p>
                 {isEmpty(profile.website) ? null : (
                   <a
