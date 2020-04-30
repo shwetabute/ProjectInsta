@@ -38,7 +38,29 @@ class ProfileHeader extends Component {
             </div>
             <div className="float-right" >
               
-              <p> <h4>20</h4> Following</p>
+              <div className="col-4 col-md-3 m-auto">
+                <div className="float-left" >
+                  
+                  <p> <h4>{ profile.followers.length }</h4> Followers </p>
+                </div>
+                <div className="float-right" >
+                  
+                  <p> <h4>{ profile.following.length }</h4> Following </p>
+                </div>
+              </div>
+              
+              {/* <p>
+                {isEmpty(profile.website) ? null : (
+                  <a
+                    className="text-white p-2"
+                    href={profile.website}
+                    target="_blank"
+                  >
+                    <i className="fas fa-globe fa-2x" />
+                  </a>
+                )}
+
+                              </p> */}
             </div>
           </div>
       </div>
