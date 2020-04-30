@@ -30,10 +30,10 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div >
-            <h1 className="" style={{textTransform: "capitalize"}}>
+            <h1>
               Welcome 
             </h1>
-            <h2> <Link to={`/profile/${profile.handle}`} style={{color:'#cf8f17a2'}}>{user.name}</Link></h2>
+            <h2> <Link to={`/profile/${profile.handle}`} style={{color:'#cf8f17a2', textTransform: "capitalize"}}>{user.name}</Link></h2>
 
             <ProfileActions />
             {/* <Experience experience={profile.experience} />

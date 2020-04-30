@@ -15,7 +15,7 @@ class ProfileHeader extends Component {
         <div className="row">
           <div className="col-6 offset-3">
         {profile &&profile.user &&( <img
-              className="rounded-circle "
+              className="rounded-circle profilePic "
               src= {profile?.profilePic? profile.profilePic : profile.user.avatar}
               height="150px" width="150px"
               alt=""
@@ -23,7 +23,7 @@ class ProfileHeader extends Component {
           </div>
         </div>
         <div className="col-6 offset-3">
-          {profile && profile.user && (<h1 className="display-4 text-center " style={{ textTransform: "capitalize" }}>{profile.user.name}</h1>)}
+          {profile && profile.user && (<h1 className="heading" style={{ textTransform: "capitalize" }}>{profile.user.name}</h1>)}
           <p className="lead text-center" style={{textTransform: "capitalize"}}>
             {profile && profile.gender}{' '}
          
@@ -31,13 +31,13 @@ class ProfileHeader extends Component {
              <p style={{textTransform: "capitalize"}}>{(profile && profile.location)}</p>
           
         </div>
-        <div className="col-6 offset-3">
+        {/* <div className="col-6 offset-3">
             <div className="float-left" >
               
               <p> <h4>10</h4> Followers</p>
             </div>
             <div className="float-right" >
-              
+               */}
               <div className="col-4 col-md-3 m-auto">
                 <div className="float-left" >
                   
@@ -64,8 +64,8 @@ class ProfileHeader extends Component {
             </div>
           </div>
       </div>
-    </div>
-  </div>
+  //   </div>
+  // </div>
     );
   }
 }
