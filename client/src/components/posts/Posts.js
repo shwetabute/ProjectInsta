@@ -39,13 +39,17 @@ class Posts extends Component {
       <div className="feed">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-            <ProfileHeader profile={profile} />
+          
+          <div className="col-md-12">
+            <div className="col-md-5 float-right">
               <PostForm />
-              {postContent}
-            
-              
+              <span className=''>
+              <ProfileHeader profile={profile} />
+              </span>
             </div>
+            {postContent} 
+          </div>
+            
           </div>
         </div>
       </div>
