@@ -19,7 +19,7 @@ class Navbar extends Component {
     const { profile } = this.props.profile;
     // console.log("This is user from navabr", JSON.stringify(user));
     // console.log("This is profile from navabr", JSON.stringify(profile?.user._id));
-    if (profile && user?.id == profile?.user._id) {
+    if (profile && user?.id == profile?.user?._id) {
        this.ProfilePicNav = profile.profilePic
     }
     
@@ -65,7 +65,7 @@ class Navbar extends Component {
           >
            { profile && (<img
               className="rounded-circle"
-              src={this.ProfilePicNav?this.ProfilePicNav:user.avatar}
+              src={this.ProfilePicNav?this.ProfilePicNav:user?.avatar}
               alt={user.name}
               style={{ width: "25px", marginRight: "5px" }}
               title="you must have a gravatar connected to your email to display an image "

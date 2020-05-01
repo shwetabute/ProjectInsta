@@ -6,7 +6,7 @@ class ProfileHeader extends Component {
   render() {
     
     const { profile } = this.props;
-    console.log(profile);
+    // console.log(profile);
 
     if (profile && (profile.gender === "Prefer Not to Say" || profile.gender === "Custom")){
       profile.gender = " ";
