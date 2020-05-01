@@ -50,7 +50,7 @@ class Navbar extends Component {
 
     const authLinks = (
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+ 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item ">
         <Link className="nav-link" to="/profiles">
@@ -89,7 +89,7 @@ class Navbar extends Component {
         </div>
         </li>
       </ul>
-      </div>
+     
     );
     return (
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">

@@ -29,35 +29,13 @@ class Dashboard extends Component {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
-          <div >
-            <h1>
-              Welcome 
-            </h1>
-            <h2> <Link to={`/profile/${profile.handle}`} style={{color:'#cf8f17a2', textTransform: "capitalize"}}>{user.name}</Link></h2>
-
-            <ProfileActions />
-            {/* <Experience experience={profile.experience} />
-            <Education education={profile.education} /> */}
-            <div style={{ marginBottom: '60px' }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
-          </div>
+          this.props.history.push('/feed')
         );
       } else {
         // User is logged in but has no profile
         dashboardContent = (
           this.props.history.push('/create-profile')
-          // <div>
-          //   <p className="lead text-muted">Welcome {user.name}</p>
-          //   <p>You have not yet setup a profile, please add some info</p>
-          //   <Link to="/create-profile" className="btn btn-lg btn-info">
-          //     Create Profile
-          //   </Link>
-          // </div>
+       
         );
       }
     }
