@@ -26,7 +26,7 @@ class ProfileHeader extends Component {
           </div>
         </div>
           <div className="col-6 offset-3">
-            {profile && profile.user && (<h1 className="heading" style={{ textTransform: "capitalize" }}>{profile.user.name}</h1>)}
+            {profile && profile.user && (<h1 className="heading" style={{ textTransform: "capitalize"}}>{profile.user.name}</h1>)}
             <p className="lead text-center" style={{textTransform: "capitalize"}}>
               {profile && profile.gender}{' '}
           

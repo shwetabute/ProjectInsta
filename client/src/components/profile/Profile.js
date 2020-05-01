@@ -8,7 +8,7 @@ import Spinner from "../common/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
 import { getPosts } from "../../actions/postActions";
 import { json } from "body-parser";
-import { Card,CardDeck } from "react-bootstrap";
+import { Card,CardDeck, CardGroup } from "react-bootstrap";
 class Profile extends Component {
   componentDidMount() {
     this.props.getPosts();
@@ -45,20 +45,20 @@ class Profile extends Component {
       newSavedPost &&
       newSavedPost.map((item, index) => {
         return ( 
+          <div className="d-flex justify-content-center postimg " style={{width:"100px", height:"100px"}}>
+
+          <CardGroup>
           <Card >
-            <Card.Body>
-           <Card.Img variant="top" src={item.postimage} height="150px" width="400px" />
+            
+           <Card.Img variant="top" src={item.postimage}  />
           
-            <Card.Title>Posted by {item.name}</Card.Title>
-            <Card.Text>
-            {item.text}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-          Likes
-          </Card.Footer>
+        
         </Card>
-   
+        </CardGroup>
+        </div>
+        // <div className="row">
+        //     <img className="img-responsive"> {item.postimage}</img>
+        // </div>
          
         );
       });
@@ -74,8 +74,9 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <h3>Saved posts</h3>
-          <CardDeck>{SavedPosts}</CardDeck>
-          
+          {/* <div className="d-flex justify-content-center" style={{width:"100px", height:"100px"}}> */}
+          <CardGroup>{SavedPosts}</CardGroup>
+          {/* </div> */}
 
           <Link to="/profiles" className="btn btn-light mb-3 float-left">
             Back To Profiles
