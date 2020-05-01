@@ -8,7 +8,7 @@ import Spinner from "../common/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
 import { getPosts } from "../../actions/postActions";
 import { json } from "body-parser";
-
+import { Card,CardDeck } from "react-bootstrap";
 class Profile extends Component {
   componentDidMount() {
     this.props.getPosts();
@@ -28,7 +28,7 @@ class Profile extends Component {
     const { post } = this.props;
     let profileContent;
 
-    // console.log("this is post info from Profile", JSON.stringify(post.posts[0]?._id));
+    console.log("this is post info from Profile", JSON.stringify(post.posts));
     // console.log(
     //   "This is saveposts from profile.js",
     //   JSON.stringify(profile?.savePost)
@@ -44,16 +44,22 @@ class Profile extends Component {
     const SavedPosts =
       newSavedPost &&
       newSavedPost.map((item, index) => {
-        return (
-          <div>
-            <img
-              src={item.postimage}
-              key={index}
-              height="150px"
-              width="150px"
-            />
-            <span>{item.text}</span>
-          </div>
+        return ( 
+          <Card >
+            <Card.Body>
+           <Card.Img variant="top" src={item.postimage} height="220px" width="320px" />
+          
+            <Card.Title>Posted by {item.name}</Card.Title>
+            <Card.Text>
+            {item.text}
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+          Likes
+          </Card.Footer>
+        </Card>
+   
+         
         );
       });
 
@@ -68,7 +74,8 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <h3>Saved posts</h3>
-          {SavedPosts}
+          <CardDeck>{SavedPosts}</CardDeck>
+          
 
           <Link to="/profiles" className="btn btn-light mb-3 float-left">
             Back To Profiles
@@ -78,13 +85,16 @@ class Profile extends Component {
     }
 
     return (
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
+      <>
+        <div className="profile">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">{profileContent}</div>
+            </div>
           </div>
         </div>
-      </div>
+       
+      </>
     );
   }
 }
