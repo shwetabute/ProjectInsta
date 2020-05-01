@@ -47,7 +47,7 @@ class Profile extends Component {
         return ( 
           <Card >
             <Card.Body>
-           <Card.Img variant="top" src={item.postimage} height="220px" width="320px" />
+           <Card.Img variant="top" src={item.postimage} height="150px" width="400px" />
           
             <Card.Title>Posted by {item.name}</Card.Title>
             <Card.Text>
