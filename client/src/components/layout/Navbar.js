@@ -87,7 +87,7 @@ class Navbar extends Component {
             type="button"
             data-toggle="collapse"
             // data-target="#mobile-nav"
-            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+            data-target="#mobile-nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
