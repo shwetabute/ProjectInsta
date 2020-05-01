@@ -21,7 +21,7 @@ body,
   background-size: cover;
   
 }
-.create-profile, .feed, .profile, .comment, .profiles{
+.create-profile, .feed, .profile, .comment, .profiles, .dashboard{
   width: 100vw;
   height: auto;
   display: flex;
@@ -35,7 +35,7 @@ body,
   padding: 17px 20px;
   margin: -15px;
   padding-top:35px;
-  font-family: fantasy, Arial, Helvetica, sans-serif;
+  //font-family: fantasy, Arial, Helvetica, sans-serif;
   font-size: small;
   p{
     size: 10px;

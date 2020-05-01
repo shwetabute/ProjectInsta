@@ -36,7 +36,7 @@ class ProfileHeader extends Component {
           </div>
   
               <div className="col-4 col-md-3 m-auto " >
-                <div className="float-left" style={{marginLeft: "5px"}}>
+                <div className="float-left" >
                   
                   <p> <h4>{ profile && profile.followers?.length }</h4> Followers </p>
                 </div>
