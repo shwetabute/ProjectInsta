@@ -62,13 +62,13 @@ class ProfileItem extends Component {
             <button onClick= {this.onFollowClick.bind(this, profile.user?._id)} 
                     type="button"
                     className="btn btn-info " 
-                    style={{marginTop:"-100px", paddingLeft:"40px",  paddingRight:"40px"}}>
+                    style={{marginTop:"-100px", paddingLeft:"43px",  paddingRight:"43px"}}>
             <i class="fas fa-user-friends"style={{color:"white"}}></i> Follow
             </button>)
             :(<button onClick= {this.onUnfollowClick.bind(this, profile.user?._id)} 
                     type="button"
                     className="btn btn-info " 
-                    style={{marginTop:"-100px", paddingLeft:"28px",  paddingRight:"28px"}}>
+                    style={{marginTop:"-100px", paddingLeft:"31px",  paddingRight:"31px"}}>
             <i class="fas fa-user-friends"style={{color:"white"}}></i> Unfollow
             </button>
             )}
