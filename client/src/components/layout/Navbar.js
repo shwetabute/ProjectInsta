@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 
 class Navbar extends Component {
+  ProfilePicNav = "";
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
@@ -13,10 +14,15 @@ class Navbar extends Component {
   }
   render() {
     //deconstruction
+    
     const { isAuthenticated, user } = this.props.auth;
     const { profile } = this.props.profile;
-    console.log("This is user from navabr", JSON.stringify(user?.id));
-    console.log("This is profile from navabr", JSON.stringify(profile?.user._id));
+    // console.log("This is user from navabr", JSON.stringify(user));
+    // console.log("This is profile from navabr", JSON.stringify(profile?.user._id));
+    if (profile && user?.id == profile?.user._id) {
+       this.ProfilePicNav = profile.profilePic
+    }
+    
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -57,9 +63,9 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            {profile&& (user?.id==profile?.user._id) && (<img
+           { profile && (<img
               className="rounded-circle"
-              src={profile.profilePic?profile.profilePic:user.avatar}
+              src={this.ProfilePicNav?this.ProfilePicNav:user.avatar}
               alt={user.name}
               style={{ width: "25px", marginRight: "5px" }}
               title="you must have a gravatar connected to your email to display an image "
