@@ -29,10 +29,11 @@ class Dashboard extends Component {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
-          <div>
-            <p className="lead text-muted" style={{textTransform: "capitalize"}}>
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
+          <div >
+            <h1>
+              Welcome 
+            </h1>
+            <h2> <Link to={`/profile/${profile.handle}`} style={{color:'#cf8f17a2', textTransform: "capitalize"}}>{user.name}</Link></h2>
 
             <ProfileActions />
             {/* <Experience experience={profile.experience} />

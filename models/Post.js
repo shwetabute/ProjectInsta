@@ -69,6 +69,11 @@ const PostSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+
+  ProfilePic: {
+    type: Schema.Types.ObjectId,
+    ref: "Profile"
   }
 });
 
