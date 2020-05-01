@@ -91,7 +91,7 @@ class PostItem extends Component {
           
             {showActions ? (
               
-              <span >
+              <span className="actions">
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"

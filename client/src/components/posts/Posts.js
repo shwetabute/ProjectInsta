@@ -13,9 +13,11 @@ class Posts extends Component {
   componentDidMount() {
     this.props.getPosts();
     // this.props.getCurrentProfile();
-    if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
-    }
+    console.log('hii: ' + this.props.match.params.handle)
+    // if (this.props.match.params.handle) {
+    //   this.props.getProfileByHandle(this.props.match.params.handle);
+    // }
+
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
@@ -40,7 +42,7 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
           
-          <div className="col-md-12">
+          <div className="col-md-11 centerdiv ">
             <div className="col-md-5 float-right">
               <PostForm />
               <span className=''>
