@@ -18,7 +18,7 @@ import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
-
+import SavedPost from './components/posts/SavedPost';
 import EditProfile from './components/edit-profile/EditProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
@@ -27,7 +27,6 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 import RstPwd from './components/auth/Password';
 import { SET_CURRENT_USER } from './actions/types';
-
 
 
 if (localStorage.jwtToken) {
@@ -83,9 +82,12 @@ class App extends Component {
                   path="/edit-profile"
                   component={EditProfile}
                 />
-            </Switch>
-            <Switch>
+              </Switch>
+              <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/savedpost" component={SavedPost} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />

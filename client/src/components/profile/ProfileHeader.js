@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import isEmpty from '../../validation/is-empty';
+import { Link } from 'react-router-dom';
 
 class ProfileHeader extends Component {
   render() {
@@ -13,7 +14,7 @@ class ProfileHeader extends Component {
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src= {profile.profilePic? profile.profilePic : profile.user.avatar}
+                  src= {profile.profilePic ? profile.profilePic : profile.user.avatar}
                   height="150px" width="150px"
                   alt=""
                 />
@@ -37,7 +38,12 @@ class ProfileHeader extends Component {
                   <p> <h4>{ profile.following.length }</h4> Following </p>
                 </div>
               </div>
+
+              {/* <Link to={`/savedpost`} className="btn btn-info ">
+                <i class="far fa-eye" style={{color:"white"}}></i> View Saved Posts
+              </Link> */}
               
+
               {/* <p>
                 {isEmpty(profile.website) ? null : (
                   <a

@@ -5,6 +5,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addPost } from "../../actions/postActions";
 import { getCurrentProfile } from '../../actions/profileActions';
 import TextFieldGroup from "../common/TextFieldGroup";
+import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
   constructor(props) {
@@ -138,6 +139,11 @@ class PostForm extends Component {
               </button>
             </form>
           </div>
+        </div>
+        <div style={{marginTop:"30px"}}>
+          <Link to={`/savedpost`} className="btn btn-info ">
+            <i class="far fa-eye" style={{color:"white"}}></i> View Saved Posts
+          </Link>
         </div>
       </div>
     );

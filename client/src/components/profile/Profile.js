@@ -36,7 +36,7 @@ class Profile extends Component {
           <ProfileAbout profile={profile} />
           <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
-              </Link>
+          </Link>
           
         </div>
       );
