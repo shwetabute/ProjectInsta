@@ -32,7 +32,8 @@ class ProfileHeader extends Component {
           
             </p>
               <p style={{textTransform: "capitalize"}}>{(profile && profile.location)}</p>
-            
+         
+
           </div>
   
               <div className="col-4 col-md-3 m-auto " >

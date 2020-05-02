@@ -48,7 +48,7 @@ class Profile extends Component {
        
           <CardGroup className="thumbnail">
           <Card >
-          <Card.Title className="titleSP" > <i class="far fa-user"></i> {item.name}</Card.Title>
+          <Card.Title className="titleSP" style={{textTransform: "capitalize"}}> <i class="far fa-user"></i> {item.name}</Card.Title>
            
            <Card.Img  className="imageSP" variant="top" src={item.postimage}  />
            
@@ -68,7 +68,7 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
          <div className=" col-md-12 centerdiv card card-body bg-light mb-3">
-          <h3 className="insta_color">Saved Posts</h3>
+          <h4 className="insta_color">Saved Posts</h4>
           <hr/>
           <CardGroup>{SavedPosts}</CardGroup>
           </div>

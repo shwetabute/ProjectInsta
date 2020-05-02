@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+import { getProfiles } from '../../actions/profileActions';
 
 import { deletePost, addLike, removeLike, savePost, unsavePost, followUser } from '../../actions/postActions';
 
 class PostItem extends Component {
+
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -25,6 +27,10 @@ class PostItem extends Component {
 
   unSavePostClick(id) {
     this.props.unsavePost(id);
+  }
+
+  componentDidMount() {
+    this.props.getProfiles();
   }
 
   findUserLike(likes) {
@@ -48,19 +54,22 @@ class PostItem extends Component {
 
 
   render() {
-    const { post, auth, showActions, profile } = this.props;
+    const { post, auth, showActions } = this.props;
+    const { profiles } = this.props.profile;
 
-    // console.log("this is post info from POstItem", JSON.stringify(post));
-    // console.log(
-    //   "this is profile info",
-    //   JSON.stringify(profile.profile.user._id)
-    // );
-    // console.log("check", post.user === profile.profile.user._id);
+    console.log(profiles)
+    var profile = undefined;
+    for(var i = 0; i < profiles?.length; i++) {
+      if (profiles[i].user?._id === post.user) {
+        profile = profiles[i];
+        break;
+      }
+    }
+ 
     return (
       <div className="card mb-3 col-md-7">
-      {/* <div className="col-md-2"> */}
         <div class="card-body">
-            <Link to={`/profile/${profile.handle}`}>
+            <Link to={`/profile/${profile?.handle}`}>
                         
                 <img
                   className="rounded-circle d-none d-sm-block profileImg"
@@ -145,8 +154,7 @@ class PostItem extends Component {
             
             
           </div>
-        // </div>
-      // </div>
+     
       
     );
   }
@@ -165,7 +173,8 @@ PostItem.propTypes = {
   followUser: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+  getProfiles: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 // console.log(JSON.stringify().post)
 
@@ -174,6 +183,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost, followUser })(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, savePost, unsavePost, followUser, getProfiles })(
   PostItem
 );
