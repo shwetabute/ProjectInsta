@@ -8,8 +8,9 @@ const Post = require("../../models/Post");
 // Profile model
 const Profile = require("../../models/Profile");
 
-// Validation
+// Validation 
 const validatePostInput = require("../../validation/post");
+const validateCommentInput = require("../../validation/comment");
 
 // @route   POST api/posts
 // @desc    Create post
@@ -149,6 +150,7 @@ router.post(
     });
   }
 );
+
 // @route   POST api/posts/comment/:id
 // @desc    Add comment to post
 // @access  Private
@@ -156,7 +158,8 @@ router.post(
   "/comment/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    
+    const { errors, isValid } = validateCommentInput(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -170,9 +173,7 @@ router.post(
           text: req.body.text,
           name: req.body.name,
           avatar: req.body.avatar,
-          user: req.user.id,
-          //profile:req.profile.id,
-          profilePic:req.body.profilePic
+          user: req.user.id
         };
 
         // Add to comments array

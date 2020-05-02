@@ -23,6 +23,7 @@ class CommentForm extends Component {
   }
 
   onSubmit(e) {
+    //console.log("I am here")
     e.preventDefault();
 
     const { user } = this.props.auth;
@@ -32,7 +33,7 @@ class CommentForm extends Component {
       text: this.state.text,
       name: user.name,
       avatar: user.avatar,
-    //  profilePic:profile.profilePic
+      //profilePic:profile.profilePic
     };
 
     this.props.addComment(postId, newComment);
@@ -40,6 +41,7 @@ class CommentForm extends Component {
   }
 
   onChange(e) {
+    //console.log("I am in onChange")
     this.setState({ [e.target.name]: e.target.value });
   }
 
