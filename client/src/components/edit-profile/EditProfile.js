@@ -121,14 +121,14 @@ class CreateProfile extends Component {
           const profilePic = await this.serializeAsBase64(picture);
           // onImageChange && onImageChange(profilePic)
           if (profilePic .length > 25 * 1024) {
-            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            this.setState({ errors: { profilePic : "Please provide an image within 25 kb" }});
             return;
           }
           this.setState({
             profilePic: profilePic,
           });
         } catch (err) {
-          this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
+          this.setState({ errors: { profilePic : "Failed to parse the image" }});
         }
       }
     }
@@ -200,6 +200,7 @@ class CreateProfile extends Component {
                                   checked={this.state.gender === 'Male'} 
                                   onChange={this.onChange} >
                   Male
+
                     </option>
                 
                     <option type="radio" value="Female" name="gender"
@@ -220,9 +221,7 @@ class CreateProfile extends Component {
                     Prefer Not to Say
                   </option>
                 </select>  
-              
-               
-                
+      
  
                 <TextAreaFieldGroup
                   placeholder="Short Bio"

@@ -50,6 +50,10 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
       },
+      profile: {
+        type: Schema.Types.ObjectId,
+        ref: "profile"
+      },
       text: {
         type: String,
         required: true
@@ -63,6 +67,9 @@ const PostSchema = new Schema({
       date: {
         type: Date,
         default: Date.now
+      },
+      profilePic: {
+        type:String
       }
     }
   ],
