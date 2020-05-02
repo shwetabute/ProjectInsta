@@ -5,16 +5,15 @@ module.exports = function validatePostInput(data) {
   let errors = {};
 
   // data.text = !isEmpty(data.text) ? data.text : "";
-  data.postimage = !isEmpty(data.postimage) ? data.postimage : "";
-
-  // if (!Validator.isLength(data.text, { min: 10, max: 300 })) {
-  //   errors.text = "Post must be between 10 and 300 characters";
+  // if (!Validator.isLength(data.text, { max: 100 })) {
+  //   errors.text = "Post must be between 1 and 100 characters";
   // }
 
   // if (Validator.isEmpty(data.text)) {
   //   errors.text = "Text field is required";
   // }
 
+  data.postimage = !isEmpty(data.postimage) ? data.postimage : "";
   if (Validator.isEmpty(data.postimage)) {
     errors.postimage = "Please provide a image for the post ";
   }
