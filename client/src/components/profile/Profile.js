@@ -45,20 +45,17 @@ class Profile extends Component {
       newSavedPost &&
       newSavedPost.map((item, index) => {
         return ( 
-          <div className="d-flex justify-content-center postimg " style={{width:"100px", height:"100px"}}>
-
-          <CardGroup>
+       
+          <CardGroup className="thumbnail">
           <Card >
-            
-           <Card.Img variant="top" src={item.postimage}  />
-          
+          <Card.Title className="titleSP" > <i class="far fa-user"></i> {item.name}</Card.Title>
+           
+           <Card.Img  className="imageSP" variant="top" src={item.postimage}  />
+           
         
         </Card>
         </CardGroup>
-        </div>
-        // <div className="row">
-        //     <img className="img-responsive"> {item.postimage}</img>
-        // </div>
+
          
         );
       });
@@ -68,19 +65,14 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div className="col-md-12 ">
-          {/* <div className="row">
-          
-          </div> */}
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          <h3>Saved posts</h3>
-          {/* <div className="d-flex justify-content-center" style={{width:"100px", height:"100px"}}> */}
+         <div className=" col-md-12 centerdiv card card-body bg-light mb-3">
+          <h3 className="insta_color">Saved Posts</h3>
+          <hr/>
           <CardGroup>{SavedPosts}</CardGroup>
-          {/* </div> */}
-
-          <Link to="/profiles" className="btn btn-light mb-3 float-left">
-            Back To Profiles
-          </Link>
+          </div>
+         
         </div>
       );
     }
