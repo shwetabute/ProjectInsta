@@ -41,7 +41,7 @@ class Dashboard extends Component {
           // this.props.history.push('/create-profile') </div>
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
+            <p>You have not yet setup a profile, please use the button bellow to create a profile</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
               Create Profile
             </Link>
