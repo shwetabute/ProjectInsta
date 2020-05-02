@@ -105,30 +105,34 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h4 className="display-4 text-center">Create Your Profile</h4>
-              <p className="lead text-center">
+              <h4 className="text-center insta_color">Create Your Profile</h4>
+              <p className="text-center">
                 Let's get some information to make your profile stand out
               </p>
               <small className="d-block pb-3">*required fields</small>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
-                  onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, nickname"
-                />
-
-                {this.state.profilePic && (
-                  <img src={this.state.profilePic} height="50px" width="50px" />
+              {this.state.profilePic && (
+                  <img  className="rounded-circle profilePic"
+                   src={this.state.profilePic} 
+                   height="100px" width="100px"
+                   />
                 )}
-                  <TextFieldGroup
+
+              <form onSubmit={this.onSubmit}>
+              <input
+
                   type="file"
                   placeholder="Upload an image"
                   name="profilePic"
                   onChange={this.UploadImage}
                   error={errors.profilePic}
+                /> 
+                <TextFieldGroup
+                  placeholder="* Username"
+                  name="handle"
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                  error={errors.handle}
+                  info="Please provide a unique username for your profile"
                 />
                 {/* <input
                   type="file"
@@ -144,7 +148,7 @@ class CreateProfile extends Component {
                   value={this.state.phonenumber}
                   onChange={this.onChange}
                   error={errors.phonenumber}
-                  info="Would you like to add Phone No "
+                  info="Please provide a valid Phone Number"
                 />
                 <TextFieldGroup
                   placeholder="Website"
@@ -152,7 +156,7 @@ class CreateProfile extends Component {
                   value={this.state.website}
                   onChange={this.onChange}
                   error={errors.website}
-                  info="Could be your own website or a company one"
+                  // info="Could be your own website or a company one"
                 />
                 <TextFieldGroup
                   placeholder="Location"
@@ -160,50 +164,40 @@ class CreateProfile extends Component {
                   value={this.state.location}
                   onChange={this.onChange}
                   error={errors.location}
-                  info="City or city & state suggested (eg. Boston, MA)"
+                  info="City or city & state suggested (eg. Bellevue, WA)"
                 />
-                <p>Gender</p>
-                <label>
-                  <input
-                    type="radio"
-                    value="Male"
-                    name="gender"
-                    checked={this.state.gender === "Male"}
-                    onChange={this.onChange}
-                  />
+                
+                <select className="custom-select form-group form-text createpost" style={{color:"rgb(58, 56, 56)"}}>
+                  <option selected >Gender...</option>
+                  <option type="radio" value="Male" name="gender"
+                                  checked={this.state.gender === 'Male'} 
+                                  onChange={this.onChange} >
                   Male
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="Female"
-                    name="gender"
-                    checked={this.state.gender === "Female"}
-                    onChange={this.onChange}
-                  />
-                  Female
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="Custom"
-                    name="gender"
-                    checked={this.state.gender === "Custom"}
-                    onChange={this.onChange}
-                  />
-                  Custom
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="Prefer Not to Say"
-                    name="gender"
-                    checked={this.state.gender === "Prefer Not to Say"}
-                    onChange={this.onChange}
-                  />
-                  Prefer Not to Say
-                </label>
-
+                    </option>
+                
+                    <option type="radio" value="Female" name="gender"
+                                  checked={this.state.gender === 'Female'} 
+                                  onChange={this.onChange} >
+                    Female
+                  </option>
+                  
+                    <option type="radio" value="Custom" name="gender"
+                                  checked={this.state.gender === 'Custom'} 
+                                  onChange={this.onChange} >
+                    Custom
+                  </option>
+                  
+                    <option type="radio" value="Prefer Not to Say" name="gender"
+                                  checked={this.state.gender === 'Prefer Not to Say'} 
+                                  onChange={this.onChange} >
+                    Prefer Not to Say
+                  </option>
+                </select>  
+              
+               
+                
+ 
+           
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
                   name="bio"

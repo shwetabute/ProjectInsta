@@ -21,12 +21,14 @@ class Post extends Component {
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
-      console.log(post.comments);
+      console.log('commenting' + post.comments);
       postContent = (
         <div className="col-md-12">
-          <CommentForm postId={post._id} />
+          <div className="col-md-5 float-right ">
+            <CommentForm postId={post._id} />
+            <CommentFeed postId={post._id} comments={post.comments} />
+          </div>
           <PostItem post={post} showActions={false} />
-          <CommentFeed postId={post._id} comments={post.comments} />
         </div>
       );
     }

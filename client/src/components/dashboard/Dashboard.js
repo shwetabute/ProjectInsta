@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
-import ProfileActions from './ProfileActions';
 import './styleDashboard.scss'
+import Posts from '../posts/Posts';
+import CreateProfile from '../create-profile/CreateProfile'
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
-
   onDeleteClick(e) {
     this.props.deleteAccount();
   }
@@ -21,18 +21,20 @@ class Dashboard extends Component {
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
-    //console.log(profile);
+    
 
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      // Check if logged in user has profile data
+      //Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           this.props.history.push('/feed')
           
         );
-      } else  {
+
+      } else {
+
         // User is logged in but has no profile
         dashboardContent = (
           // <div> Please create a Profile
@@ -45,15 +47,17 @@ class Dashboard extends Component {
             </Link>
           </div>
         );
+        //dashboardContent = <CreateProfile />
       }
-    }
-
+     }
+     console.log("profile");
+     console.log(user);
+     console.log(profile)
     return (
       <div className="dashboard">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              {/* <h1 className="display-4">Dashboard</h1> */}
               {dashboardContent}
             </div>
           </div>

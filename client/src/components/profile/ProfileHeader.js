@@ -26,13 +26,14 @@ class ProfileHeader extends Component {
           </div>
         </div>
           <div className="col-6 offset-3">
-            {profile && profile.user && (<h1 className="heading" style={{ textTransform: "capitalize" }}>{profile.user.name}</h1>)}
+            {profile && profile.user && (<p className="profileName" style={{ textTransform: "capitalize"}}>{profile.user.name}</p>)}
             <p className="lead text-center" style={{textTransform: "capitalize"}}>
               {profile && profile.gender}{' '}
           
             </p>
               <p style={{textTransform: "capitalize"}}>{(profile && profile.location)}</p>
-            
+         
+
           </div>
   
               <div className="col-4 col-md-3 m-auto " >

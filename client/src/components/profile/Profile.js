@@ -8,7 +8,7 @@ import Spinner from "../common/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
 import { getPosts } from "../../actions/postActions";
 import { json } from "body-parser";
-import { Card,CardDeck } from "react-bootstrap";
+import { Card,CardDeck, CardGroup } from "react-bootstrap";
 class Profile extends Component {
   componentDidMount() {
     this.props.getPosts();
@@ -45,20 +45,17 @@ class Profile extends Component {
       newSavedPost &&
       newSavedPost.map((item, index) => {
         return ( 
+       
+          <CardGroup className="thumbnail">
           <Card >
-            <Card.Body>
-           <Card.Img variant="top" src={item.postimage} height="150px" width="400px" />
-          
-            <Card.Title>Posted by {item.name}</Card.Title>
-            <Card.Text>
-            {item.text}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-          Likes
-          </Card.Footer>
+          <Card.Title className="titleSP" style={{textTransform: "capitalize"}}> <i class="far fa-user"></i> {item.name}</Card.Title>
+           
+           <Card.Img  className="imageSP" variant="top" src={item.postimage}  />
+           
+        
         </Card>
-   
+        </CardGroup>
+
          
         );
       });
@@ -68,18 +65,14 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div className="col-md-12 ">
-          {/* <div className="row">
-          
-          </div> */}
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          <h3>Saved posts</h3>
-          <CardDeck>{SavedPosts}</CardDeck>
-          
-
-          <Link to="/profiles" className="btn btn-light mb-3 float-left">
-            Back To Profiles
-          </Link>
+         <div className=" col-md-12 centerdiv card card-body bg-light mb-3">
+          <h4 className="insta_color">Saved Posts</h4>
+          <hr/>
+          <CardGroup>{SavedPosts}</CardGroup>
+          </div>
+         
         </div>
       );
     }
