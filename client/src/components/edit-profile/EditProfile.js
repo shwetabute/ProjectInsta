@@ -121,14 +121,14 @@ class CreateProfile extends Component {
           const profilePic = await this.serializeAsBase64(picture);
           // onImageChange && onImageChange(profilePic)
           if (profilePic .length > 25 * 1024) {
-            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            this.setState({ errors: { profilePic : "Please provide an image within 25 kb" }});
             return;
           }
           this.setState({
             profilePic: profilePic,
           });
         } catch (err) {
-          this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
+          this.setState({ errors: { profilePic : "Failed to parse the image" }});
         }
       }
     }
@@ -204,7 +204,14 @@ class CreateProfile extends Component {
                   <img src={this.state.profilePic} height="50px" width="50px" />
                 )}
 
-                <input
+                {/* <input
+                  type="file"
+                  placeholder="Upload an image"
+                  name="profilePic"
+                  onChange={this.UploadImage}
+                  error={errors.profilePic}
+                /> */}
+                <TextFieldGroup
                   type="file"
                   placeholder="Upload an image"
                   name="profilePic"

@@ -19,8 +19,6 @@ class CreateProfile extends Component {
       phonenumber: "",
       gender: "",
       profilePic: "",
-      //Need to add followers,following
-
       errors: {},
     };
 
@@ -85,14 +83,15 @@ class CreateProfile extends Component {
         try {
           const profilePic = await this.serializeAsBase64(picture);
           if (profilePic .length > 25 * 1024) {
-            this.setState({ errors: { "profilePic ": "Please provide an image within 25 kb" }});
+            this.setState(
+              { errors: { profilePic: "Please provide an image within 25 kb" } });
             return;
           }
           this.setState({
             profilePic: profilePic,
           });
         } catch (err) {
-         this.setState({ errors: { "profilePic ": "Failed to parse the image" }});
+         this.setState({ errors: { profilePic : "Failed to parse the image" }});
         }
       }
     }
@@ -124,14 +123,20 @@ class CreateProfile extends Component {
                 {this.state.profilePic && (
                   <img src={this.state.profilePic} height="50px" width="50px" />
                 )}
-
-                <input
+                  <TextFieldGroup
                   type="file"
                   placeholder="Upload an image"
                   name="profilePic"
                   onChange={this.UploadImage}
                   error={errors.profilePic}
                 />
+                {/* <input
+                  type="file"
+                  placeholder="Upload an image"
+                  name="profilePic"
+                  onChange={this.UploadImage}
+                  error={errors.profilePic}
+                /> */}
 
                 <TextFieldGroup
                   placeholder="Phone Number"
