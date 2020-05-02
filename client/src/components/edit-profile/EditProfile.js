@@ -169,7 +169,14 @@ class CreateProfile extends Component {
                   error={errors.handle}
                   info="Please provide a unique username for your profile"
                 />
-                               
+                 <TextFieldGroup
+                  placeholder="Phone Number"
+                  name="phonenumber"
+                  value={this.state.phonenumber}
+                  onChange={this.onChange}
+                  error={errors.phonenumber}
+                  info="Please provide a valid Phone Number"
+                />              
                 <TextFieldGroup
                   placeholder="Website"
                   name="website"
@@ -216,14 +223,7 @@ class CreateProfile extends Component {
               
                
                 
-                <TextFieldGroup
-                  placeholder="Phone Number"
-                  name="phonenumber"
-                  value={this.state.phonenumber}
-                  onChange={this.onChange}
-                  error={errors.phonenumber}
-                  info="Please provide a valid Phone Number"
-                />
+ 
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
                   name="bio"
