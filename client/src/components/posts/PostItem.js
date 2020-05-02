@@ -49,13 +49,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions, profile } = this.props;
-
-    // console.log("this is post info from POstItem", JSON.stringify(post));
-    // console.log(
-    //   "this is profile info",
-    //   JSON.stringify(profile.profile.user._id)
-    // );
-    // console.log("check", post.user === profile.profile.user._id);
+   
     return (
       <div className="card mb-3 col-md-7">
       {/* <div className="col-md-2"> */}
