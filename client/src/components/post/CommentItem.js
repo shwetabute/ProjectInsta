@@ -22,7 +22,7 @@ class CommentItem extends Component {
               />
             </a>
             <br />
-            <p className="text-left" style={{marginTop:"-20px"}}>{comment.name}</p>
+            <p className="text-left nameComment" style={{marginTop:"-20px"}}>{comment.name}</p>
           </div>
           <div className="col-md-8">
             <p>{comment.text}</p>
