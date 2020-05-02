@@ -25,14 +25,15 @@ class CommentItem extends Component {
             <p className="text-left" style={{marginTop:"-20px"}}>{comment.name}</p>
           </div>
           <div className="col-md-8">
-            <p className="">{comment.text}</p>
+            <p>{comment.text}</p>
             {comment.user === auth.user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
                 type="button"
-                className="btn btn-danger mr-1"
-              >
-                <i className="fas fa-times" />
+                className="btn1 btn-light mr-1 float-right delete" style={{marginTop:"-20px"}}
+                   >  <i className="fas fa-times float-right"  /> 
+              
+                
               </button>
             ) : null}
           </div>
