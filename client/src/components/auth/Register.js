@@ -74,19 +74,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.name}
                 />
-              {/* <input
-                    type="text"
-                    className={classnames("sign_up_text", {
-                      "is-invalid": errors.name
-                   })}
-                    placeholder="Name"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )} */}
+              
               </div>
               <div className="form-group">
               <TextFieldGroup
@@ -98,19 +86,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.email}
                 />
-              {/* <input
-                    type="email"
-                    className={classnames("sign_up_email", {
-                      "is-invalid": errors.email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )} */}
+            
              </div>
               <div className="form-group">
               <TextFieldGroup
@@ -122,19 +98,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                {/* <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.password
-                  })}
-                  placeholder="Password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )} */}
+               
              </div>
               <div className="form-group">
               <TextFieldGroup
@@ -146,19 +110,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-              {/* <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.password2
-                  })}
-                  placeholder="Confirm Password"
-                  name="password2"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                />
-                {errors.password2 && (
-                  <div className="invalid-feedback">{errors.password2}</div>
-                )} */}
+             
              </div>
              <input type="submit" className="btn btn-info btn-block mt-4" />
           </div>

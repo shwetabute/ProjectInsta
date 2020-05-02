@@ -54,6 +54,7 @@ class PostItem extends Component {
 
 
   render() {
+
     const { post, auth, showActions } = this.props;
     const { profiles } = this.props.profile;
 
@@ -66,6 +67,7 @@ class PostItem extends Component {
       }
     }
  
+
     return (
       <div className="card mb-3 col-md-7">
         <div class="card-body">
