@@ -30,22 +30,7 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           this.props.history.push('/feed')
-          // <div >
-          //   <h1>
-          //     Welcome 
-          //   </h1>
-          //   <h2> <Link to={`/profile/${profile.handle}`} style={{color:'#cf8f17a2', textTransform: "capitalize"}}>{user.name}</Link></h2>
-
-          //   <ProfileActions />
-            
-          //   <div style={{ marginBottom: '60px' }} />
-          //   <button
-          //     onClick={this.onDeleteClick.bind(this)}
-          //     className="btn btn-danger"
-          //   >
-          //     Delete My Account
-          //   </button>
-          // </div>
+          
         );
       } else  {
         // User is logged in but has no profile

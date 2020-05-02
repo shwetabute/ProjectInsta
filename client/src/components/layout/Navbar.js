@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { logoutUser } from "../../actions/authActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 
 
 class Navbar extends Component {
@@ -12,6 +13,14 @@ class Navbar extends Component {
     this.props.logoutUser();
     // this.props.history.push("/");
   }
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
+  onDeleteClick(e) {
+    this.props.deleteAccount();
+  }
+
   render() {
     //deconstruction
     
@@ -40,8 +49,10 @@ class Navbar extends Component {
     );
 
     const authLinks = (
+
+ 
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
+        <li className="nav-item ">
         <Link className="nav-link" to="/profiles">
           <i className="fas fa-users"> </i> Active Members
           </Link>
@@ -52,33 +63,38 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
-          <i class="far fa-user"> </i> Profile
+          <Link className="nav-link" to={`/profile/${profile?.handle}`}>
+          <i className="fas fa-user"> </i> Profile
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item dropdown dropleft">
         {/* <i class="fad fa-sign-out"></i> */}
           <a
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
+        
+            className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >
            { profile && (<img
               className="rounded-circle"
               src={this.ProfilePicNav?this.ProfilePicNav:user?.avatar}
               alt={user.name}
               style={{ width: "25px", marginRight: "5px" }}
-              title="you must have a gravatar connected to your email to display an image "
             />)}
-            Logout
+          
           </a>
+          <div className="dropdown-menu  " aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="/edit-profile"> Edit Profile</a>
+          <a className="dropdown-item" onClick={this.onDeleteClick.bind(this)} href="#">Delete My Account</a>
+          <div className="dropdown-divider"></div>
+          <a className="dropdown-item" onClick={this.onLogoutClick.bind(this)} href="#">Logout</a>
+        </div>
         </li>
       </ul>
+     
     );
     return (
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         {/* <div className="container"> */}
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/feed">
           <h3 className="header_size">Social<span className="insta_color">Net</span></h3>
           
     </Link>
@@ -103,7 +119,9 @@ class Navbar extends Component {
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   //errors: PropTypes.object.isRequired,
 };
  
@@ -113,4 +131,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
  
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(mapStateToProps, { logoutUser, getCurrentProfile, deleteAccount })(Navbar);

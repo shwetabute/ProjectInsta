@@ -40,7 +40,7 @@ class ProfileItem extends Component {
            
           <div className="float-left">
             <img src={profile.profilePic?profile.profilePic: profile.user?.avatar }
-              alt="" className="rounded-circle float-left" style={{height:"7vw", marginBottom:"-20px", marginRight:"15px"}} 
+              alt="" className="rounded-circle float-left" style={{height:"90px",width:"90px", marginBottom:"-20px", marginRight:"15px"}} 
               />
             </div>
             <div className="float-left ">
