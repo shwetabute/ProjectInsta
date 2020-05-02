@@ -84,9 +84,9 @@ class PostForm extends Component {
       if (picture) {
         try {
           const postimage = await this.serializeAsBase64(picture);
-          if (postimage.length > 25 * 1024) {
+          if (postimage.length > 2 *1024 * 1024) {
             this.setState({
-              errors: { postimage: "Please provide an image within 25 kb" },
+              errors: { postimage: "Please provide an image within 1 Mb" },
             });
             return;
           }
