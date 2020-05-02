@@ -120,7 +120,7 @@ class PostForm extends Component {
                 {this.state.postimage && (
                   <img
                     src={this.state.postimage}
-                    height="100px"
+                    height="250px"
                     width="250px"
                   />
                 )}
