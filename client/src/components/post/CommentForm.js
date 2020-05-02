@@ -28,25 +28,29 @@ class CommentForm extends Component {
 
     const { user } = this.props.auth;
     const { postId } = this.props;
-
+    const { profile } = this.props;
+   
     const newComment = {
       text: this.state.text,
       name: user.name,
       avatar: user.avatar,
-      //profilePic:profile.profilePic
+      profilePic:profile.profile.profilePic
     };
-
+    
     this.props.addComment(postId, newComment);
+   
     this.setState({ text: '' });
   }
 
   onChange(e) {
-    //console.log("I am in onChange")
+    
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     const { errors } = this.state;
+   
+   
 
     return (
       <div className="post-form mb-3 col-md-5 float-right " >
@@ -80,12 +84,14 @@ CommentForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  profile:PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  profile:state.profile
 });
 
 export default connect(mapStateToProps, { addComment })(CommentForm);
