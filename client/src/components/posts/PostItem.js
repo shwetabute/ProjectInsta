@@ -58,7 +58,7 @@ class PostItem extends Component {
     const { post, auth, showActions } = this.props;
     const { profiles } = this.props.profile;
 
-    console.log(profiles)
+    
     var profile = undefined;
     for(var i = 0; i < profiles?.length; i++) {
       if (profiles[i].user?._id === post.user) {

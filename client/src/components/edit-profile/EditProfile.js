@@ -120,8 +120,8 @@ class CreateProfile extends Component {
         try {
           const profilePic = await this.serializeAsBase64(picture);
           // onImageChange && onImageChange(profilePic)
-          if (profilePic .length > 25 * 1024) {
-            this.setState({ errors: { profilePic : "Please provide an image within 25 kb" }});
+          if (profilePic .length > 2 *1024 * 1024) {
+            this.setState({ errors: { profilePic : "Please provide an image within 1MB" }});
             return;
           }
           this.setState({
@@ -154,7 +154,7 @@ class CreateProfile extends Component {
                 )}
           
               <form onSubmit={this.onSubmit}>
-              <input
+              <TextFieldGroup
                   type="file"
                   placeholder="Upload an image"
                   name="profilePic"
