@@ -125,13 +125,7 @@ class CreateProfile extends Component {
                   onChange={this.UploadImage}
                   error={errors.profilePic}
                 />
-                 {/* <input
-                  type="file"
-                  placeholder="Upload an image"
-                  name="profilePic"
-                  onChange={this.UploadImage}
-                  error={errors.profilePic}
-                />  */}
+                 
                 <TextFieldGroup
                   placeholder="* Username"
                   name="handle"
