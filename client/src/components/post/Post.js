@@ -21,7 +21,7 @@ class Post extends Component {
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
-      console.log('commenting' + post.comments);
+     
       postContent = (
         <div className="col-md-12">
           <div className="col-md-5 float-right ">

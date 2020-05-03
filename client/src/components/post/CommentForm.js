@@ -23,7 +23,7 @@ class CommentForm extends Component {
   }
 
   onSubmit(e) {
-    //console.log("I am here")
+    
     e.preventDefault();
 
     const { user } = this.props.auth;

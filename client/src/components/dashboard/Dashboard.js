@@ -50,9 +50,7 @@ class Dashboard extends Component {
         //dashboardContent = <CreateProfile />
       }
      }
-     console.log("profile");
-     console.log(user);
-     console.log(profile)
+    
     return (
       <div className="dashboard">
         <div className="container">

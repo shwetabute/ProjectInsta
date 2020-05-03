@@ -33,9 +33,7 @@ class PostForm extends Component {
 
     const { user } = this.props.auth;
     const { profilePic } = this.props.profile;
-
-    // console.log("Props.profile info ",JSON.stringify(this.props.profile.profile.profilePic));
-    // console.log(JSON.stringify(this.props));
+  
     const newPost = {
       text: this.state.text,
       postimage: this.state.postimage,

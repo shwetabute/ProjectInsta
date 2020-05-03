@@ -28,11 +28,7 @@ class Profile extends Component {
     const { post } = this.props;
     let profileContent;
 
-   // console.log("this is post info from Profile", JSON.stringify(post.posts));
-    // console.log(
-    //   "This is saveposts from profile.js",
-    //   JSON.stringify(profile?.savePost)
-    // );
+   
 
     // displaying saved posts
     const newSavedPost = post?.posts?.filter(

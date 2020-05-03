@@ -8,12 +8,12 @@ import { followUser, unfollowUser } from '../../actions/profileActions';
 class ProfileItem extends Component {
 
   onFollowClick(id) {
-    console.log (id);
+    // console.log (id);
     this.props.followUser(id);
   }
 
   onUnfollowClick(id) {
-    console.log (id);
+    // console.log (id);
     this.props.unfollowUser(id);
   }
 

@@ -13,7 +13,7 @@ class Posts extends Component {
   componentDidMount() {
     this.props.getPosts();
     // this.props.getCurrentProfile();
-    console.log('hii: ' + this.props.match.params.handle)
+    // console.log('hii: ' + this.props.match.params.handle)
     // if (this.props.match.params.handle) {
     //   this.props.getProfileByHandle(this.props.match.params.handle);
     // }

@@ -26,8 +26,7 @@ class Navbar extends Component {
     
     const { isAuthenticated, user } = this.props.auth;
     const { profile } = this.props.profile;
-    // console.log("This is user from navabr", JSON.stringify(user));
-    // console.log("This is profile from navabr", JSON.stringify(profile?.user._id));
+    
     if (profile && user?.id == profile?.user?._id) {
        this.ProfilePicNav = profile.profilePic
     }

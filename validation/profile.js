@@ -29,9 +29,7 @@ module.exports = function validateProfileInput(data) {
   }
 
   if (!isEmpty(data.location)) {
-    // if (!isNaN(data.location)){
-    //   errors.location = "Enter valid Location";
-    // }
+    
     const filteredLocation = data.location.replace(/[^a-zA-Z .,]/g, "");
     if (filteredLocation !== data.location) {
       errors.location = "Enter valid location";
@@ -44,11 +42,7 @@ module.exports = function validateProfileInput(data) {
     }
   }
 
-  // if (!isEmpty(data.profilePic)) {
-  //   if (!Validator.isURL(data.profilePic)) {
-  //     errors.profilePic = "Not a valid URL";
-  //   }
-  // }
+  
 
   return {
     errors,
